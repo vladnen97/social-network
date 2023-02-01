@@ -1,0 +1,25 @@
+.submitPost {
+    background-color: #fff;
+    margin-top: 15px;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+.submitPost textarea {
+    width: 100%;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 15px;
+    box-shadow:5px 5px 10px rgba(0,0,0,0.1);
+    font-size: 16px;
+    resize: vertical;
+    outline: none;
+    margin-bottom: 45px;
+}
+
+.submitPost button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

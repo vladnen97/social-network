@@ -1,0 +1,45 @@
+.item {
+    background-color: #fff;
+    margin-bottom: 15px;
+    min-height: 100px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #333;
+    border-radius: 50%;
+}
+
+.info {
+    padding-left: 15px;
+}
+
+.name {
+    font-size: 20px;
+}
+
+.date {
+    font-size: 14px;
+    color: #666;
+}
+
+.content {
+    font-size: 16px;
+    margin-left: 95px;
+    padding: 10px 5px 10px 0;
+    border-bottom: 1px solid #bebebe;
+}
+
+.likes {
+    margin-left: 95px;
+    padding: 10px 5px 10px 0;
+    color: #e50c0c;
+}
