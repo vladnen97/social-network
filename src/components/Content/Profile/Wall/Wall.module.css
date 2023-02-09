@@ -1,4 +1,5 @@
 .wall {
-    /*background-color: #fff;*/
-    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
