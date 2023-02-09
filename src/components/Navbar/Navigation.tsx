@@ -3,14 +3,14 @@ import n from "./Navigation.module.css";
 import {Item} from "./Item/Item";
 
 
-export function Navigation(props: any) {
+export function Navigation() {
     return (
         <nav className={n.nav}>
-            <Item link ={"/profile"} text ={'Profile'}/>
-            <Item link = {"/news"} text ={'News'}/>
-            <Item link = {"/dialogs"} text ={'Messages'}/>
-            <Item link = {"/music"} text ={'Music'}/>
-            <Item link = {"/settings"} text ={'Settings'}/>
+            <Item link ={"/profile"} title ={'Profile'} logo={'user'}/>
+            <Item link = {"/news"} title ={'Friends'} logo={'group'}/>
+            <Item link = {"/dialogs"} title ={'Messages'} logo={'chat'}/>
+            <Item link = {"/music"} title ={'Music'} logo={'music'}/>
+            <Item link = {"/settings"} title ={'Settings'} logo={'settings'}/>
         </nav>
     );
 }
