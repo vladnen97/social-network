@@ -12,16 +12,23 @@
     color: #23a6d5;
 }
 
+.active svg {
+    fill: #23a6d5;
+}
+
 .item:hover {
     /*border: 1px solid #1982E9FF;*/
     /*background-color: #eee;*/
     border-radius: 10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    box-shadow:2px 3px 4px rgba(0,0,0,0.3);
 }
 
-.name {
-    font-size: 20px;
+.item:hover svg{
+    fill: #23a6d5;
+}
+
+.title {
+    font-size: 17px;
     margin-left: 10px;
     font-weight: 400;
 }
-
