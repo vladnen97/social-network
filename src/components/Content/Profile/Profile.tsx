@@ -6,7 +6,7 @@ import {Wall} from "./Wall/Wall";
 
 export function Profile(props: any) {
     return (
-        <div>
+        <div className={'profile'}>
             <Header/>
             <SubmitPost/>
             <Wall posts={props.localState.posts}/>
