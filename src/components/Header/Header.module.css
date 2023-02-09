@@ -1,11 +1,11 @@
 .header {
+    display: flex;
     grid-area: h;
     background-color: #fff;
     border-radius: 0 0 20px 20px;
+    padding: 8px;
 }
 
-.logo {
-    width: 46px;
-    height: 46px;
-    margin: 7px 0 0 7px;
+.logo svg {
+    fill: #1d9dc9;
 }
