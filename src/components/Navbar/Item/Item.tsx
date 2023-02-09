@@ -1,18 +1,21 @@
 import React from 'react';
-import i from "./Item.module.css"
-import {UserOutlined} from "@ant-design/icons";
-import {NavLink} from "react-router-dom";
+import i from './Item.module.css'
+import {NavLink} from 'react-router-dom';
+import {SvgIcon} from '../SvgIcon';
 
 type ItemPropsType = {
-    link: string,
-    text: string
+    link: string
+    title: string
+    logo: string
 }
 
 export function Item(props: ItemPropsType) {
     return (
-            <NavLink className={i.item} activeClassName={i.active} to={props.link}>
-                <UserOutlined style={{fontSize: '35px'}}/>
-                <div className={i.name}>{props.text}</div>
-            </NavLink>
+        <NavLink className={i.item} activeClassName={i.active} to={props.link}>
+            <div className={i.icon}>
+                <SvgIcon id={props.logo}/>
+            </div>
+            <div className={i.title}>{props.title}</div>
+        </NavLink>
     );
 }
