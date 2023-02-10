@@ -7,7 +7,7 @@ import {SubmitPost} from '../SubmitPost/SubmitPost';
 
 export function Wall(props: any) {
 
-    let wallElements = props.posts.map( (w:any) => <Post name={w.name} date = {w.date} text = {w.text} likesCount={w.likes}/>)
+    let wallElements = props.posts.map( () => <Post/>)
 
     return (
         <div className={s.wall}>
