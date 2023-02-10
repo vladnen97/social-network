@@ -11,7 +11,7 @@ export function CardUser() {
                 <div className={s.name}>
                     Vlad Nenashkin
                 </div>
-                <div className={s.text}>
+                <div className={s.status}>
                     time when sended
                 </div>
             </div>
