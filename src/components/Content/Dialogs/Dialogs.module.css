@@ -1,8 +1,22 @@
-.content {
+.chat {
+    display: grid;
+    grid-template-areas:
+            "m d";
+    grid-template-columns: 8fr 4fr;
+    grid-gap: 16px;
+    height: 92vh;
+    max-height: 92vh;
+}
+
+.messages {
+    grid-area: m;
     border-radius: 20px;
     background-color: #fff;
-    display: flex;
-    height: 92vh;
+}
 
+.dialogs {
+    grid-area: d;
+    background-color: #fff;
+    border-radius: 20px;
 }
 
