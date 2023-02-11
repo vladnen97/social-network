@@ -1,7 +1,7 @@
 import React from 'react';
 import p from './Header.module.css'
 import {UserOutlined} from '@ant-design/icons';
-import {Avatar} from 'antd';
+import {Avatar, Badge} from 'antd';
 import {SvgIcon} from '../../../Navbar/SvgIcon';
 
 export function Header() {
@@ -9,8 +9,11 @@ export function Header() {
         <div className={p.header}>
             <div className={p.cover}></div>
             <div className={p.inner}>
-                <Avatar className={p.avatar} size={180} icon={<UserOutlined/>}/>
-
+                <div className={p.avatar}>
+                    <Badge dot offset={[-35, 160]} color={'green'} style={{width: '20px', height: '20px', border: '2px solid white'}}>
+                        <Avatar size={180} icon={<UserOutlined/>}/>
+                    </Badge>
+                </div>
                 <div className={p.info}>
                     <h2 className={p.ownerName}>Vlad Nenashkin</h2>
 

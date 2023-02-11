@@ -19,14 +19,16 @@
     top: -90px;
     left: 16px;
     z-index: 1;
-    height: 180px;
-    width: 180px;
+    height: 190px;
+    width: 190px;
     border-radius: 50%;
     border: #fff 5px solid;
+    background-color: #fff;
 }
 
+
 .info {
-    padding-left: 190px;
+    padding-left: 200px;
 }
 
 .ownerName {
