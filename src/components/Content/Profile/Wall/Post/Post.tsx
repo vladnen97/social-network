@@ -13,7 +13,7 @@ export function Post() {
             <Divider className={s.custom}/>
 
             <div className={s.content}>
-                здесь будет располагаться контент поста
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </div>
 
             <div className={s.active}>
