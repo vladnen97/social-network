@@ -1,5 +1,4 @@
 .header {
-    height: 400px;
     background-color: #fff;
     border-radius: 20px;
     overflow: hidden;
@@ -7,43 +6,63 @@
 
 .cover {
     height: 250px;
-    background: url("https://photos.smugmug.com/Wallpapers/i-7Tds9J5/0/9d189a52/X2/HDRshooter-super-ultra-wide-wallpaper-034-X2.jpg")
-    no-repeat center;
+    background: url("https://photos.smugmug.com/Wallpapers/i-7Tds9J5/0/9d189a52/X2/HDRshooter-super-ultra-wide-wallpaper-034-X2.jpg") no-repeat center;
 }
 
 .inner {
-    height: 150px;
-    padding: 20px;
+    padding: 16px;
     position: relative;
 }
 
 .avatar {
     position: absolute;
     top: -90px;
-    left: 20px;
+    left: 16px;
     z-index: 1;
     height: 180px;
     width: 180px;
     border-radius: 50%;
-    border: #333 5px solid;
+    border: #fff 5px solid;
 }
 
 .info {
-    padding-left: 210px;
-    display: flex;
-    flex-direction: column;
-
+    padding-left: 190px;
 }
 
-.name {
-    font-weight: 700;
+.ownerName {
+    font-weight: 600;
     font-size: 2em;
+    margin-bottom: 0;
+    line-height: 1.2em;
 }
 
-.birth {
+.status {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
 
+.fullInfo {
+    color: #818c99;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.fullInfo svg {
+    fill: #818c99;
 }
 
 .city {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
 
+.dateBirth {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
 }
