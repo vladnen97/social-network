@@ -13,7 +13,7 @@ export function Dialogs() {
 
             <div className={s.chat}>
                 <div className={s.messages}>
-                    <Message/>
+                    <Message/> {/*разбить на 2 компоненты: UserMessages, FriendMessages*/}
                     <Message/>
                     <Message/>
                     <Message/>
@@ -21,14 +21,14 @@ export function Dialogs() {
 
                 <Divider className={s.divider}/>
 
-                <div className={s.sendMessage}>
+                <div className={s.sendMessage}> {/*доработать*/}
                     <textarea className={s.textArea} placeholder={'Write a message...'}></textarea>
                     <button onClick={() => alert('not work yet')} className={s.sendButton}> send </button>
                 </div>
             </div>
 
             <div className={s.dialogs}>
-                <Dialog/>
+                <Dialog/> {/*замапить*/}
                 <Dialog/>
                 <Dialog/>
                 <Dialog/>
