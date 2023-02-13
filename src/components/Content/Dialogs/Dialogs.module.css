@@ -1,4 +1,4 @@
-.chat {
+.content {
     display: grid;
     grid-template-areas:
             "m d";
@@ -8,12 +8,72 @@
     max-height: 92vh;
 }
 
-.messages {
+/*chat*/
+.chat {
+    background-color: #fff;
     grid-area: m;
     border-radius: 20px;
-    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
+.messages {
+    background-color: #bcbcbc;
+
+}
+
+.divider {
+    margin: 8px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/*send message bar */
+.sendMessage {
+    padding: 8px 24px 16px 24px;
+    display: flex;
+    gap: 16px;
+}
+
+.textArea {
+    width: 100%;
+    max-width: 420px;
+
+    height: 42px;
+    max-height: 150px;
+
+    font-size: 14px;
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    border-radius: 18px;
+    padding: 8px 14px;
+    overflow-y: hidden;
+
+    resize: none;
+    outline: none;
+}
+
+.sendButton {
+    color: #fff;
+    background-color: #126eca;
+    width: 120px;
+    height: 42px;
+    border: none;
+    border-radius: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*dialogs bar*/
 .dialogs {
     grid-area: d;
     background-color: #fff;
