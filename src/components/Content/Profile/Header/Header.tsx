@@ -3,7 +3,7 @@ import p from './Header.module.css'
 import {UserOutlined} from '@ant-design/icons';
 import {Avatar, Badge} from 'antd';
 import {SvgIcon} from '../../../Navbar/SvgIcon';
-
+//все вынести в компоненты
 export function Header() {
     return (
         <div className={p.header}>
