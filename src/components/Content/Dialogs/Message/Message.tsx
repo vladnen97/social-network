@@ -6,6 +6,7 @@ export function Message() {
     return (
         <div className={s.message}>
             <Avatar size={64}> John </Avatar>
+            <div>time</div>
         </div>
     );
 }
