@@ -1,3 +1,46 @@
-.message {
+.content {
     padding: 8px 12px;
+    display: flex;
+    gap: 12px;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.status {
+    font-size: 12px;
+    font-weight: 600;
+    color: grey;
+}
+
+
+/*блок с текстом сообщения*/
+
+.message {
+    position: relative;
+    padding: 8px;
+    border-radius: 12px;
+    color: white;
+    background-color: #126eca;
+    width: 400px;
+}
+
+.message:after {
+    content: '';
+    position: absolute;
+
+    bottom: 0;
+    left: -10px;
+
+    height: 0;
+    width: 0;
+
+    border-bottom: 14px solid #126eca;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
 }
