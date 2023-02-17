@@ -7,7 +7,7 @@ import {SubmitPost} from './SubmitPost/SubmitPost';
 
 export function Wall(props: any) {
 
-    let wallElements = props.posts.map( () => <Post/>)
+    const wallElements = props.posts.map( () => <Post/>)
 
     return (
         <div className={s.wall}>
