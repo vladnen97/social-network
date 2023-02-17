@@ -1,11 +1,11 @@
 import React from 'react';
-import s from './Navigation.module.css';
+import s from './SideBar.module.css';
 import {Item} from './Item/Item';
 import {Avatar, Divider} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 
 
-export function Navigation() {
+export function SideBar() {
     return (
         <nav className={s.sideBar}>
             <div className={s.nav}>
