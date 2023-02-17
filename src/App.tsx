@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Header} from "./components/Header/Header";
-import {SideBar} from "./components/Navbar/SideBar";
+import {SideBar} from "./components/SideBar/SideBar";
 import {Content} from "./components/Content/Content";
 
 
