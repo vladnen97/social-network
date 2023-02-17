@@ -17,7 +17,7 @@ export function Post() {
             </div>
 
             <div className={s.active}>
-                likes: <span> 6</span> comments: <span> 0 </span>
+                likes: <span> 6 </span> comments: <span> 0 </span>
             </div>
         </div>
     );
