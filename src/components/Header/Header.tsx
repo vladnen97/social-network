@@ -1,6 +1,6 @@
 import React from 'react';
 import h from './Header.module.css';
-import {SvgIcon} from '../Navbar/SvgIcon';
+import {SvgIcon} from '../SideBar/SvgIcon';
 
 export function Header() {
     return (
