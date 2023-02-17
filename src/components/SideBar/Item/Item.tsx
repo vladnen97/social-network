@@ -1,5 +1,5 @@
 import React from 'react';
-import i from './Item.module.css'
+import s from './Item.module.css'
 import {NavLink} from 'react-router-dom';
 import {SvgIcon} from '../SvgIcon';
 
@@ -7,11 +7,11 @@ import {SvgIcon} from '../SvgIcon';
 
 export function Item(props: any) {
     return (
-        <NavLink className={i.item} activeClassName={i.active} to={props.link}>
-            <div className={i.icon}>
+        <NavLink className={s.item} activeClassName={s.active} to={props.link}>
+            <div className={s.icon}>
                 <SvgIcon id={props.logo}/>
             </div>
-            <div className={i.title}>{props.title}</div>
+            <div className={s.title}>{props.title}</div>
         </NavLink>
     );
 }
