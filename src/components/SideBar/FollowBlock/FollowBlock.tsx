@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './FollowBlock.module.css';
-import {Avatar, Divider} from 'antd';
-import {UserOutlined} from '@ant-design/icons';
+import {Divider} from 'antd';
+import {ShortUserCard} from './ShortUserCard/ShortUserCard';
 
 export function FollowBlock() {
     return (
@@ -13,11 +13,9 @@ export function FollowBlock() {
             <Divider className={s.divider}/>
 
             <div className={s.users}>
-                <div className={s.user}>
-                    <Avatar size={48} icon={<UserOutlined/>}/>
-                    <div className={s.userName}>Name K.</div>
-                </div>
-                {/*вынести в отдельную компоненту*/}
+                <ShortUserCard/>
+                <ShortUserCard/>
+                <ShortUserCard/>
             </div>
         </div>
     );
