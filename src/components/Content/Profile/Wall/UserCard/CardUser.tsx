@@ -12,7 +12,7 @@ export function CardUser() {
                     Vlad Nenashkin
                 </div>
                 <div className={s.status}>
-                    time when sended
+                    time when sended bla bla bla bla bla
                 </div>
             </div>
         </div>
