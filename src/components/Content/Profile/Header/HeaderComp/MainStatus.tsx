@@ -1,10 +1,12 @@
 import React from 'react';
 import s from '../Header.module.css';
 
-export function MainStatus() {
+type PropsType = {
+    status: string
+}
+
+export function MainStatus({status}: PropsType) {
     return (
-        <div className={s.status}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.
-        </div>
+        <div className={s.status}>{status}</div>
     );
 }

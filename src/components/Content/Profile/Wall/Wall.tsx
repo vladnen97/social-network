@@ -3,11 +3,17 @@ import s from "./Wall.module.css"
 import {Post} from "./Post/Post";
 import {SubmitPost} from './SubmitPost/SubmitPost';
 
+type PropsType = {
+    posts: Array<any>
+}
 
+export function Wall({posts}: PropsType) {
 
-export function Wall(props: any) {
-
-    const wallElements = props.posts.map( () => <Post/>)
+    const wallElements = posts.map( (p) => {
+        return (
+            <Post key={p.id} name={p.name} date={p.date} postContent={p.postContent} likes={p.likes} comments={p.comments}/>
+        )
+    })
 
     return (
         <div className={s.wall}>

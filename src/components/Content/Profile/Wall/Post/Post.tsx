@@ -3,21 +3,27 @@ import s from "./Post.module.css"
 import {CardUser} from '../UserCard/CardUser';
 import {Divider} from 'antd';
 
+type PropsType = {
+    name: string
+    date: string
+    postContent: string
+    likes: number
+    comments: number
+}
 
-
-export function Post() {
+export function Post({name, date, postContent, likes, comments}: PropsType) {
     return (
         <div className={s.item}>
-            <CardUser/>
+            <CardUser size={64} url={'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg'} name={name} status={date}/>
 
             <Divider className={s.custom}/>
 
             <div className={s.content}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                {postContent}
             </div>
 
             <div className={s.active}>
-                likes: <span> 6 </span> comments: <span> 0 </span>
+                likes: <span> {likes} </span> comments: <span> {comments} </span>
             </div>
         </div>
     );

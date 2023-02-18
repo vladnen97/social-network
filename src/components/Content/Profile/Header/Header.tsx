@@ -5,21 +5,32 @@ import {MainName} from './HeaderComp/MainName';
 import {MainStatus} from './HeaderComp/MainStatus';
 import {InfoTag} from './HeaderComp/InfoTag';
 
-export function Header() {
+type PropsType = {
+    header: {
+        online: boolean
+        url: string
+        name: string
+        status: string
+        iconId: string
+        title: string
+    }
+}
+
+export function Header({ header: {online, url, name, title, status, iconId}}:PropsType) {
+
     return (
         <div className={s.header}>
             <div className={s.cover}></div>
             <div className={s.inner}>
-                <MainAvatar/>
+                <MainAvatar online={online} url={url}/>
                 <div className={s.info}>
 
-                    <MainName/>
-                    <MainStatus/>
+                    <MainName name={name}/>
+                    <MainStatus status={status}/>
 
                     <div className={s.fullInfo}>
 
-                        <InfoTag iconId={'location'} title={'Saint-Petersburg'}/>
-                        <InfoTag iconId={'calendar'} title={'2 october 1997'}/>
+                        <InfoTag iconId={iconId} title={title}/>
 
                     </div>
                 </div>

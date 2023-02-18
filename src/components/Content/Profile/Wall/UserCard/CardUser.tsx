@@ -1,18 +1,24 @@
 import React from 'react';
 import {Avatar} from 'antd';
-import {UserOutlined} from '@ant-design/icons';
 import s from './CardUser.module.css';
 
-export function CardUser() {
+type PropsType = {
+    size: number
+    url: string
+    name: string
+    status: string
+}
+
+export function CardUser({size, url, name, status}: PropsType) {
     return (
         <div className={s.cardUser}>
-            <Avatar size={64} icon={<UserOutlined/>}/>
+            <Avatar size={size} src={url}/>
             <div className={s.info}>
                 <div className={s.name}>
-                    Vlad Nenashkin
+                    {name}
                 </div>
                 <div className={s.status}>
-                    time when sended bla bla bla bla bla
+                    {status}
                 </div>
             </div>
         </div>
