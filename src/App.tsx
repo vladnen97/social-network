@@ -9,8 +9,8 @@ function App(props: any) {
     return (
             <div className={"app-wrapper"}>
                 <Header/>
-                <SideBar/>
-                <Content state={props.state}/>
+                <SideBar sideBar={props.state.sideBar}/>
+                <Content content={props.state.content}/>
             </div>
     );
 }
