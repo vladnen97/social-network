@@ -7,7 +7,7 @@ export function Profile(props: any) {
     return (
         <div className={'profile'}>
             <Header/>
-            <Wall posts={props.localState.posts}/>
+            <Wall/>
         </div>
     );
 }
