@@ -5,12 +5,12 @@ import {SideBar} from "./components/SideBar/SideBar";
 import {Content} from "./components/Content/Content";
 
 
-function App(props: any) {
+function App({state}: any) {
     return (
             <div className={"app-wrapper"}>
                 <Header/>
-                <SideBar sideBar={props.state.sideBar}/>
-                <Content content={props.state.content}/>
+                <SideBar sideBar={state.sideBar}/>
+                <Content content={state.content}/>
             </div>
     );
 }
