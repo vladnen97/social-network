@@ -3,27 +3,63 @@ import {v1} from 'uuid';
 export const state = {
     content: {
         profilePage: {
+            header: {
+                online: true,
+                url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg',
+                name: 'Name Surname',
+                status: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                iconId: 'location',
+                title: 'Saint-Petersburg',
+            },
             posts: [
-                {id: v1(), name: 'Vlad Nenashkin', date: '20 Junary 2023', text: 'It is my first post', likes: 6, comments: 0},
-                {id: v1(), name: 'Vlad Nenashkin', date: '23 Junary 2023', text: 'Hi, how are you today?', likes: 17, comments: 0},
-                {id: v1(), name: 'Vlad Nenashkin', date: '25 Junary 2023', text: 'Extra post', likes: 0, comments: 0},
-                {id: v1(), name: 'Vlad Nenashkin', date: '27 Junary 2023', text: 'bla bla bla', likes: 2, comments: 0}
+                {
+                    id: v1(),
+                    name: 'Name Surname',
+                    date: '27 Junary 2023',
+                    postContent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    likes: 13,
+                    comments: 0
+                },
+                {
+                    id: v1(),
+                    name: 'Name Surname',
+                    date: '25 Junary 2023',
+                    postContent: 'nibh sit amet commodo nulla facilisi nullam vehicula ipsum a',
+                    likes: 1,
+                    comments: 0
+                },
+                {
+                    id: v1(),
+                    name: 'Name Surname',
+                    date: '22 Junary 2023',
+                    postContent: 'Hello, how are you today',
+                    likes: 9,
+                    comments: 0
+                },
+                {
+                    id: v1(),
+                    name: 'Name Surname',
+                    date: '20 Junary 2023',
+                    postContent: ' It is my first post',
+                    likes: 23,
+                    comments: 0
+                },
+
             ]
         },
         dialogsPage: {
             messages: [
-                {id: 1, text: 'Hi'},
-                {id: 2, text: 'How are yot today?'},
-                {id: 3, text: 'Hello World'},
-                {id: 4, text: 'Yo'},
-                {id: 5, text: 'Some text here'}
+                {id: v1(), text: 'Hi', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU', status: '19:37'},
+                {id: v1(), text: 'How are you today?', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU', status: '19:38'},
+                {id: v1(), text: 'Hi, I\'m fine, wby?', url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg', status: '20:02'},
+                {id: v1(), text: 'Im fine too, thanks', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU', status: '21:13'},
+                {id: v1(), text: 'Cool Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg', status: '22:15'}
             ],
             dialogs: [
-                {id: 1, name: 'Misha Kuznetsov'},
-                {id: 2, name: 'Vasya Pupkin'},
-                {id: 3, name: 'Dima Sokolov'},
-                {id: 4, name: 'Lena Golovach'},
-                {id: 5, name: 'Nakatika Naebuka'}
+                {id: v1(), name: 'Misha Kuznetsov', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU', status: 'here will be last message'},
+                {id: v1(), name: 'Dasha Bukina', url: 'https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg', status: 'here will be last message'},
+                {id: v1(), name: 'Dima Sokolov', url: 'https://www.shutterstock.com/image-photo/headshot-portrait-smiling-african-american-260nw-1443249407.jpg', status: 'here will be last message'},
+                {id: v1(), name: 'ELena Golovach', url: 'https://media.istockphoto.com/id/1381221247/photo/beautiful-afro-girl-with-curly-hairstyle.jpg?b=1&s=170667a&w=0&k=20&c=0x91osZOkL8EfhTEEGNa2EeCGN2gdMTNULOsUFW_0i4=', status: 'here will be last message'},
             ]
         }
     },
