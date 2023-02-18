@@ -19,15 +19,13 @@
 
 
 /*блок с текстом сообщения*/
-
 .message {
-    min-width: 64px;
     position: relative;
     padding: 8px;
     border-radius: 12px;
     color: white;
     background-color: #126eca;
-    width: 400px;
+    max-width: 400px;
 }
 
 .message:after {
