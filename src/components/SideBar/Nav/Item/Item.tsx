@@ -3,9 +3,13 @@ import s from './Item.module.css'
 import {NavLink} from 'react-router-dom';
 import {SvgIcon} from '../../SvgIcon';
 
+type PropsType = {
+    link: string
+    title: string
+    logo: string
+}
 
-
-export function Item(props: any) {
+export function Item(props: PropsType) {
     return (
         <NavLink className={s.item} activeClassName={s.active} to={props.link}>
             <div className={s.icon}>
