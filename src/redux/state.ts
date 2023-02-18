@@ -86,11 +86,11 @@ export const state = {
             }
         ],
         linkItems: [
-            {id: '1', link: '/profile', title: 'Profile', logo: 'user'},
-            {id: '2', link: '/dialogs', title: 'Messages', logo: 'chat'},
-            {id: '3', link: '/news', title: 'News', logo: 'news'},
-            {id: '4', link: '/music', title: 'Music', logo: 'music'},
-            {id: '5', link: '/settings', title: 'Settings', logo: 'settings'}
+            {id: '1', link: '/', title: 'Profile', logo: 'user'},
+            {id: '2', link: 'dialogs', title: 'Messages', logo: 'chat'},
+            {id: '3', link: 'news', title: 'News', logo: 'news'},
+            {id: '4', link: 'music', title: 'Music', logo: 'music'},
+            {id: '5', link: 'settings', title: 'Settings', logo: 'settings'}
         ]
     }
 }
