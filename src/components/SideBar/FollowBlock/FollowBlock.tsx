@@ -4,6 +4,9 @@ import {Divider} from 'antd';
 import {ShortUserCard} from './ShortUserCard/ShortUserCard';
 
 export function FollowBlock() {
+
+
+
     return (
         <div className={s.following}>
             <div className={s.followingHeader}>
