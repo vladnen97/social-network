@@ -11,7 +11,7 @@ type PropsType = {
 
 export function Item(props: PropsType) {
     return (
-        <NavLink className={s.item} to={props.link}>
+        <NavLink className={({isActive}) => isActive ? `${s.item} ${s.active}` : s.item} to={props.link} >
             <div className={s.icon}>
                 <SvgIcon id={props.logo}/>
             </div>
