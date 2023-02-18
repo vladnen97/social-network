@@ -17,8 +17,6 @@
 }
 
 .item:hover {
-    /*border: 1px solid #1982E9FF;*/
-    /*background-color: #eee;*/
     border-radius: 10px;
     box-shadow:2px 3px 4px rgba(0,0,0,0.3);
 }
