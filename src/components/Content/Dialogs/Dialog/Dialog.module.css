@@ -1,3 +1,8 @@
 .dialog {
+    text-decoration: none;
+}
 
+.active {
+    background-color: dodgerblue;
+    color: white;
 }
