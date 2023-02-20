@@ -11,11 +11,11 @@ type PropsType = {
 export function Message({url, text, status}: PropsType) {
     return (
         <div className={s.content}>
-            <div className={s.messageInfo}>
+            <div className={s.userInfo}>
                 <Avatar size={48} src={url}/>
-                <div className={s.message}>{text}</div>
+                <div className={s.status}>{status}</div>
             </div>
-            <div className={s.status}>{status}</div>
+            <div className={s.message}>{text}</div>
         </div>
     );
 }
