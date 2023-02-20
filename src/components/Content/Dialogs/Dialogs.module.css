@@ -19,7 +19,8 @@
 }
 
 .messages {
-
+    max-height: 814px;
+    overflow-y: auto;
 }
 
 .divider {
