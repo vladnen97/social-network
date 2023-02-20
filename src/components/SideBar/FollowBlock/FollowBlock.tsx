@@ -2,10 +2,11 @@ import React from 'react';
 import s from './FollowBlock.module.css';
 import {Divider} from 'antd';
 import {ShortUserCard} from './ShortUserCard/ShortUserCard';
+import {FollowingUserType} from '../../../redux/state';
 
 
 type PropsType = {
-    followingUsers: Array<{id: string, name: string, size: number, url: string}>
+    followingUsers: Array<FollowingUserType>
     title: string
 }
 

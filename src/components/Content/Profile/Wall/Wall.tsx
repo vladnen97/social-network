@@ -2,9 +2,10 @@ import React from "react";
 import s from "./Wall.module.css"
 import {Post} from "./Post/Post";
 import {SubmitPost} from './SubmitPost/SubmitPost';
+import {PostType} from '../../../../redux/state';
 
 type PropsType = {
-    posts: Array<any>
+    posts: Array<PostType>
 }
 
 export function Wall({posts}: PropsType) {

@@ -2,13 +2,10 @@ import React from 'react';
 import s from './SideBar.module.css';
 import {Nav} from './Nav/Nav';
 import {FollowBlock} from './FollowBlock/FollowBlock';
+import {SideBarType} from '../../redux/state';
 
 type PropsType = {
-    sideBar: {
-        followingUsers: Array<any>
-        title: string
-        linkItems: Array<any>
-    }
+    sideBar: SideBarType
 }
 
 export function SideBar({sideBar}: PropsType) {

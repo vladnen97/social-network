@@ -1,9 +1,10 @@
 import React from 'react';
 import s from './Nav.module.css';
 import {Item} from './Item/Item';
+import {LinkItemType} from '../../../redux/state';
 
 type PropsType = {
-    linkItems: Array<{id: string, link: string, title: string, logo: string }>
+    linkItems: Array<LinkItemType>
 }
 
 export function Nav({linkItems}: PropsType) {

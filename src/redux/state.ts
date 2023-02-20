@@ -1,67 +1,176 @@
 import {v1} from 'uuid';
 
-export const state = {
-    content: {
-        profilePage: {
-            header: {
-                online: true,
-                url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg',
-                name: 'Name Surname',
-                status: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                iconId: 'location',
-                title: 'Saint-Petersburg',
-            },
-            posts: [
-                {
-                    id: v1(),
-                    name: 'Name Surname',
-                    date: '27 Junary 2023',
-                    postContent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    likes: 13,
-                    comments: 0
-                },
-                {
-                    id: v1(),
-                    name: 'Name Surname',
-                    date: '25 Junary 2023',
-                    postContent: 'nibh sit amet commodo nulla facilisi nullam vehicula ipsum a',
-                    likes: 1,
-                    comments: 0
-                },
-                {
-                    id: v1(),
-                    name: 'Name Surname',
-                    date: '22 Junary 2023',
-                    postContent: 'Hello, how are you today',
-                    likes: 9,
-                    comments: 0
-                },
-                {
-                    id: v1(),
-                    name: 'Name Surname',
-                    date: '20 Junary 2023',
-                    postContent: ' It is my first post',
-                    likes: 23,
-                    comments: 0
-                },
+export type PostType = {
+    id: string
+    name: string
+    date: string
+    postContent: string
+    likes: number
+    comments: number
+}
+export type ProfilePageHeaderType = {
+    online: boolean
+    url: string
+    name: string
+    status: string
+    iconId: string
+    title: string
+}
+export type MessageType = {
+    id: string
+    text: string
+    url: string
+    status: string
+}
+export type DialogType = {
+    id: string
+    name: string
+    url: string
+    status: string
+    path: string
+}
+export type FollowingUserType = {
+    id: string
+    name: string
+    size: number,
+    url: string
+}
+export type LinkItemType = {
+    id: string
+    link: string
+    title: string
+    logo: string
+}
 
-            ]
+export type ProfilePageType = {
+    header: ProfilePageHeaderType
+    posts: Array<PostType>
+}
+export type DialogsPageType = {
+    messages: Array<MessageType>
+    dialogs: Array<DialogType>
+}
+export type SideBarType = {
+    title: string
+    followingUsers: Array<FollowingUserType>
+    linkItems: Array<LinkItemType>
+}
+
+export type StateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sideBar: SideBarType
+}
+
+export const state: StateType = {
+    profilePage: {
+        header: {
+            online: true,
+            url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg',
+            name: 'Name Surname',
+            status: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            iconId: 'location',
+            title: 'Saint-Petersburg',
         },
-        dialogsPage: {
-            messages: [
-                {id: v1(), text: 'Hi', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU', status: '19:37'},
-                {id: v1(), text: 'How are you today?', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU', status: '19:38'},
-                {id: v1(), text: 'Hi, I\'m fine, wby?', url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg', status: '20:02'},
-                {id: v1(), text: 'Im fine too, thanks', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU', status: '21:13'},
-                {id: v1(), text: 'Cool Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg', status: '22:15'}
-            ],
-            dialogs: [
-                {id: v1(), name: 'Misha Kuznetsov', url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU', status: 'here will be last message'},
-                {id: v1(), name: 'Dasha Bukina', url: 'https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg', status: 'here will be last message'},
-                {id: v1(), name: 'Dima Sokolov', url: 'https://www.shutterstock.com/image-photo/headshot-portrait-smiling-african-american-260nw-1443249407.jpg', status: 'here will be last message'},
-                {id: v1(), name: 'ELena Golovach', url: 'https://media.istockphoto.com/id/1381221247/photo/beautiful-afro-girl-with-curly-hairstyle.jpg?b=1&s=170667a&w=0&k=20&c=0x91osZOkL8EfhTEEGNa2EeCGN2gdMTNULOsUFW_0i4=', status: 'here will be last message'},
-            ]
-        }
+        posts: [
+            {
+                id: v1(),
+                name: 'Name Surname',
+                date: '27 Junary 2023',
+                postContent: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                likes: 13,
+                comments: 0
+            },
+            {
+                id: v1(),
+                name: 'Name Surname',
+                date: '25 Junary 2023',
+                postContent: 'nibh sit amet commodo nulla facilisi nullam vehicula ipsum a',
+                likes: 1,
+                comments: 0
+            },
+            {
+                id: v1(),
+                name: 'Name Surname',
+                date: '22 Junary 2023',
+                postContent: 'Hello, how are you today',
+                likes: 9,
+                comments: 0
+            },
+            {
+                id: v1(),
+                name: 'Name Surname',
+                date: '20 Junary 2023',
+                postContent: ' It is my first post',
+                likes: 23,
+                comments: 0
+            },
+
+        ]
+    },
+    dialogsPage: {
+        messages: [
+            {
+                id: v1(),
+                text: 'Hi',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU',
+                status: '19:37'
+            },
+            {
+                id: v1(),
+                text: 'How are you today?',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU',
+                status: '19:38'
+            },
+            {
+                id: v1(),
+                text: 'Hi, I\'m fine, wby?',
+                url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg',
+                status: '20:02'
+            },
+            {
+                id: v1(),
+                text: 'Im fine too, thanks',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU',
+                status: '21:13'
+            },
+            {
+                id: v1(),
+                text: 'Cool Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg',
+                status: '22:15'
+            }
+        ],
+        dialogs: [
+            {
+                id: v1(),
+                name: 'Misha Kuznetsov',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU',
+                status: 'here will be last message',
+                path: '1'
+            },
+            {
+                id: v1(),
+                name: 'Dasha Bukina',
+                url: 'https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg',
+                status: 'here will be last message',
+                path: '2'
+            },
+            {
+                id: v1(),
+                name: 'Dima Sokolov',
+                url: 'https://www.shutterstock.com/image-photo/headshot-portrait-smiling-african-american-260nw-1443249407.jpg',
+                status: 'here will be last message',
+                path: '3'
+            },
+            {
+                id: v1(),
+                name: 'ELena Golovach',
+                url: 'https://media.istockphoto.com/id/1381221247/photo/beautiful-afro-girl-with-curly-hairstyle.jpg?b=1&s=170667a&w=0&k=20&c=0x91osZOkL8EfhTEEGNa2EeCGN2gdMTNULOsUFW_0i4=',
+                status: 'here will be last message',
+                path: '4'
+            },
+        ]
     },
     sideBar: {
         title: 'I\'m Following',

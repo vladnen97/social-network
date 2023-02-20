@@ -3,17 +3,15 @@ import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
 import {Divider} from 'antd';
+import {DialogsPageType} from '../../../redux/state';
 
 type PropsType = {
-    localState: {
-        messages: Array<any>
-        dialogs: Array<any>
-    }
+    dialogsData: DialogsPageType
 }
 
-export function Dialogs({localState: {messages, dialogs}}: PropsType) {
+export function Dialogs({dialogsData: {messages, dialogs}}: PropsType) {
 
-    const mappedDialogs = dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url} status={el.status}/>);
+    const mappedDialogs = dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url} status={el.status} path={el.path}/>);
     const mappedMessages = messages.map(el => <Message key={el.id} url={el.url} text={el.text} status={el.status}/>);
 
     return (

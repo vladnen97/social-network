@@ -4,16 +4,10 @@ import {MainAvatar} from './HeaderComp/MainAvatar';
 import {MainName} from './HeaderComp/MainName';
 import {MainStatus} from './HeaderComp/MainStatus';
 import {InfoTag} from './HeaderComp/InfoTag';
+import {ProfilePageHeaderType} from '../../../../redux/state';
 
 type PropsType = {
-    header: {
-        online: boolean
-        url: string
-        name: string
-        status: string
-        iconId: string
-        title: string
-    }
+    header: ProfilePageHeaderType
 }
 
 export function Header({ header: {online, url, name, title, status, iconId}}:PropsType) {

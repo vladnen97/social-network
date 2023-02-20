@@ -1,26 +1,17 @@
 import React from 'react';
 import {Header} from "./Header/Header";
 import {Wall} from "./Wall/Wall";
+import {ProfilePageType} from '../../../redux/state';
 
 type PropsType = {
-    localState: {
-        header: {
-            online: boolean
-            url: string
-            name: string,
-            status: string,
-            iconId: string,
-            title: string,
-        }
-        posts: Array<any>
-    }
+    profileData: ProfilePageType
 }
 
-export function Profile(props: PropsType) {
+export function Profile({profileData}: PropsType) {
     return (
         <div className={'profile'}>
-            <Header header={props.localState.header}/>
-            <Wall posts={props.localState.posts}/>
+            <Header header={profileData.header}/>
+            <Wall posts={profileData.posts}/>
         </div>
     );
 }
