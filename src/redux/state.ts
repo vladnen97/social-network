@@ -1,5 +1,4 @@
 import {v1} from 'uuid';
-import {rerenderEntireTree} from '../render';
 
 export type PostType = {
     id: string
@@ -207,6 +206,10 @@ export const state: StateType = {
     }
 }
 
+let rerenderEntireTree = () => {
+    console.log('state changed');
+}
+
 export function addPost(): void {
     const newPost: PostType = {
         id: v1(),
@@ -219,11 +222,15 @@ export function addPost(): void {
     state.profilePage.posts.unshift(newPost);
     state.profilePage.postTextValue = '';
 
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
+
 export function changePostText(value: string): void {
     state.profilePage.postTextValue = value;
-    rerenderEntireTree(state);
+    rerenderEntireTree();
+}
 
+export function subscribe(observer: () => void): void {
+    rerenderEntireTree = observer;
 }
 
