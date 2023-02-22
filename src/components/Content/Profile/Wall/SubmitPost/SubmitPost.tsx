@@ -1,12 +1,26 @@
-import React from "react";
-import s from "./SubmitPost.module.css"
-import {Button} from "antd";
+import React, {useRef} from 'react';
+import s from './SubmitPost.module.css'
+import {Button} from 'antd';
 
-export function SubmitPost() {
+type PropsType = {
+    addPost: (text: string) => void
+}
+
+export function SubmitPost({addPost}: PropsType) {
+
+    // const newPostText = React.createRef<HTMLTextAreaElement>()
+    const newPostText = useRef<HTMLTextAreaElement>(null)
+
+    const addPostHandler = () => {
+        if (newPostText.current) {
+            addPost(newPostText.current.value);
+        }
+    }
+
     return (
         <div className={s.submitPost}>
-            <textarea name="post" placeholder={"Whats new?"} cols={50} rows={5}></textarea>
-            <Button size={"large"}> Post </Button>
+            <textarea placeholder={'Whats new?'} cols={50} rows={3} ref={newPostText}></textarea>
+            <Button size={'large'} onClick={addPostHandler}> Post </Button>
         </div>
     );
 }
