@@ -6,9 +6,10 @@ import {PostType} from '../../../../redux/state';
 
 type PropsType = {
     posts: Array<PostType>
+    addPost: (text: string) => void
 }
 
-export function Wall({posts}: PropsType) {
+export function Wall({posts, addPost}: PropsType) {
 
     const wallElements = posts.map( (p) => {
         return (
@@ -18,7 +19,7 @@ export function Wall({posts}: PropsType) {
 
     return (
         <div className={s.wall}>
-            <SubmitPost/>
+            <SubmitPost addPost={addPost}/>
             { wallElements }
         </div>
     );

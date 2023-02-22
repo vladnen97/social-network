@@ -5,13 +5,14 @@ import {ProfilePageType} from '../../../redux/state';
 
 type PropsType = {
     profileData: ProfilePageType
+    addPost: (text: string) => void
 }
 
-export function Profile({profileData}: PropsType) {
+export function Profile({profileData, addPost}: PropsType) {
     return (
         <div className={'profile'}>
             <Header header={profileData.header}/>
-            <Wall posts={profileData.posts}/>
+            <Wall posts={profileData.posts} addPost={addPost}/>
         </div>
     );
 }

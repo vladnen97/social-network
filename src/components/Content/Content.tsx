@@ -10,13 +10,14 @@ import {DialogsPageType, ProfilePageType} from '../../redux/state';
 type PropsType = {
     profile: ProfilePageType
     dialogs: DialogsPageType
+    addPost: (text:string) => void
 }
 
-export function Content({profile, dialogs}: PropsType) {
+export function Content({profile, dialogs, addPost}: PropsType) {
     return (
         <div className={c.content}>
             <Routes>
-                <Route path="/" element={<Profile profileData={profile}/>}/>
+                <Route path="/" element={<Profile profileData={profile} addPost={addPost}/>}/>
                 <Route path="dialogs/*" element={<Dialogs dialogsData={dialogs}/>}/>
                 <Route path="news" element={<News/>}/>
                 <Route path="music" element={<Music/>}/>
