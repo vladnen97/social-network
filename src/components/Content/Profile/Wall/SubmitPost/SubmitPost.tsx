@@ -14,6 +14,7 @@ export function SubmitPost({addPost}: PropsType) {
     const addPostHandler = () => {
         if (newPostText.current) {
             addPost(newPostText.current.value);
+            newPostText.current.value = '';
         }
     }
 

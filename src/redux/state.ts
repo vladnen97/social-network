@@ -215,6 +215,6 @@ export function addPost(text: string) {
         comments: 0
     }
     state.profilePage.posts.unshift(newPost);
-    rerenderEntireTree();
+    rerenderEntireTree(state, addPost);
 }
 
