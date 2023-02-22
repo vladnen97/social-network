@@ -1,4 +1,5 @@
 import {v1} from 'uuid';
+import {rerenderEntireTree} from '../render';
 
 export type PostType = {
     id: string
@@ -202,5 +203,18 @@ export const state: StateType = {
             {id: '5', link: 'settings', title: 'Settings', logo: 'settings'}
         ]
     }
+}
+
+export function addPost(text: string) {
+    const newPost: PostType = {
+        id: v1(),
+        name: state.profilePage.header.name,
+        date: new Date().toLocaleString().slice(0, 5),
+        postContent: text,
+        likes: 0,
+        comments: 0
+    }
+    state.profilePage.posts.unshift(newPost);
+    rerenderEntireTree();
 }
 
