@@ -44,6 +44,7 @@ export type LinkItemType = {
 }
 
 export type ProfilePageType = {
+    postTextValue: string
     header: ProfilePageHeaderType
     posts: Array<PostType>
 }
@@ -73,6 +74,7 @@ export const state: StateType = {
             iconId: 'location',
             title: 'Saint-Petersburg',
         },
+        postTextValue: '',
         posts: [
             {
                 id: v1(),
@@ -205,16 +207,23 @@ export const state: StateType = {
     }
 }
 
-export function addPost(text: string) {
+export function addPost(): void {
     const newPost: PostType = {
         id: v1(),
         name: state.profilePage.header.name,
         date: new Date().toLocaleString().slice(0, 5),
-        postContent: text,
+        postContent: state.profilePage.postTextValue,
         likes: 0,
         comments: 0
     }
     state.profilePage.posts.unshift(newPost);
-    rerenderEntireTree(state, addPost);
+    state.profilePage.postTextValue = '';
+
+    rerenderEntireTree(state);
+}
+export function changePostText(value: string): void {
+    state.profilePage.postTextValue = value;
+    rerenderEntireTree(state);
+
 }
 
