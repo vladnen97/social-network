@@ -4,16 +4,16 @@ import {BrowserRouter} from 'react-router-dom';
 import App from './App';
 import './index.css';
 import 'antd/dist/antd.css';
-import {addPost, changePostText, state, subscribe} from './redux/state';
+import {store} from './redux/state';
 
 function rerenderEntireTree() {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} addPost={addPost} changePostText={changePostText}/>
+            <App state={store.getState()} addPost={store.addPost.bind(store)} changePostText={store.changePostText.bind(store)}/>
         </BrowserRouter>,
         document.getElementById('root')
     )
 }
 
 rerenderEntireTree();
-subscribe(rerenderEntireTree);
+store.subscribe(rerenderEntireTree);
