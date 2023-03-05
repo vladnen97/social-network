@@ -1,7 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import s from './SubmitPost.module.css'
 import {Button} from 'antd';
-import {changePostText} from '../../../../../redux/state';
 
 type PropsType = {
     addPost: () => void
@@ -9,7 +8,7 @@ type PropsType = {
     postTextValue: string
 }
 
-export function SubmitPost({addPost, postTextValue}: PropsType) {
+export function SubmitPost({addPost, postTextValue, changePostText}: PropsType) {
 
     const addPostHandler = () => {
         addPost();
@@ -20,7 +19,10 @@ export function SubmitPost({addPost, postTextValue}: PropsType) {
 
     return (
         <div className={s.submitPost}>
-            <textarea placeholder={'Whats new?'} cols={50} rows={3} value={postTextValue}
+            <textarea placeholder={'Whats new?'}
+                      cols={50}
+                      rows={3}
+                      value={postTextValue}
                       onChange={onChangeHandler}/>
             <Button size={'large'} onClick={addPostHandler}> Post </Button>
         </div>
