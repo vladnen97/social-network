@@ -13,7 +13,7 @@ export function SideBar({sideBar}: PropsType) {
 
     return (
         <div className={s.sideBar}>
-            <Nav linkItems={sideBar.linkItems}/>
+            <Nav />
             <FollowBlock followingUsers={sideBar.followingUsers} title={sideBar.title}/>
         </div>
     );

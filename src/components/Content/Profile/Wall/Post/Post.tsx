@@ -16,7 +16,7 @@ export function Post({name, date, postContent, likes, comments}: PropsType) {
         <div className={s.item}>
             <CardUser size={64} url={'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg'} name={name} status={date}/>
 
-            <Divider className={s.custom}/>
+            <Divider className={s.divider}/>
 
             <div className={s.content}>
                 {postContent}
