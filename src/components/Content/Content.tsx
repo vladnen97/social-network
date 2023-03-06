@@ -20,7 +20,7 @@ export function Content({profile, dialogs, dispatch}: PropsType) {
                 <Route path="/" element={<Navigate to={'profile'}/>}/>
 
                 <Route path="profile" element={<Profile profileData={profile} dispatch={dispatch}/>}/>
-                <Route path="dialogs/*" element={<Dialogs dialogsData={dialogs}/>}/>
+                <Route path="dialogs/*" element={<Dialogs dialogsData={dialogs} dispatch={dispatch}/>}/>
                 <Route path="news" element={<News/>}/>
                 <Route path="music" element={<Music/>}/>
 
