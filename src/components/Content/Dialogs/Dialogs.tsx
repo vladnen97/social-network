@@ -1,18 +1,31 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
 import {Divider} from 'antd';
-import {DialogsPageType} from '../../../redux/state';
+import {
+    ActionsType,
+    addMessageActionCreator,
+    changeNewMessageTextActionCreator,
+    DialogsPageType
+} from '../../../redux/state';
 
 type PropsType = {
     dialogsData: DialogsPageType
+    dispatch: (action: ActionsType) => void
 }
 
-export function Dialogs({dialogsData: {messages, dialogs}}: PropsType) {
+
+export function Dialogs({dialogsData: {messages, dialogs, newMessageText}, dispatch}: PropsType) {
+
+    const addNewMessageHandler = () => dispatch(addMessageActionCreator())
+    const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(changeNewMessageTextActionCreator(e.currentTarget.value));
+    }
 
     const mappedDialogs = dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url} status={el.status} path={el.path}/>);
     const mappedMessages = messages.map(el => <Message key={el.id} url={el.url} text={el.text} status={el.status}/>);
+
 
     return (
         <div className={s.content}>
@@ -24,8 +37,12 @@ export function Dialogs({dialogsData: {messages, dialogs}}: PropsType) {
                 <Divider className={s.divider}/>
 
                 <div className={s.sendMessage}> {/*доработать*/}
-                    <textarea className={s.textArea} placeholder={'Write a message...'}></textarea>
-                    <button onClick={() => alert('not work yet')} className={s.sendButton}> send</button>
+                    <textarea className={s.textArea}
+                              placeholder={'Write a message...'}
+                              value={newMessageText}
+                              onChange={updateNewMessageTextHandler}
+                    />
+                    <button onClick={addNewMessageHandler} className={s.sendButton}> send</button>
                 </div>
             </div>
 
