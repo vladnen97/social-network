@@ -35,7 +35,15 @@ export type FollowingUserType = {
     size: number,
     url: string
 }
+type AddPostActiontype = {
+    type: 'ADD-POST'
+}
+type ChangenewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
 
+export type ActionsType = AddPostActiontype | ChangenewPostTextActionType
 export type ProfilePageType = {
     postTextValue: string
     header: ProfilePageHeaderType
@@ -59,10 +67,9 @@ export type StateType = {
 export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
-    addPost: () => void
-    changePostText: (value: string) => void
     subscribe: (observer: () => void) => void
     getState: () => StateType
+    dispatch: (action: ActionsType) => void
 }
 
 export const store: StoreType = {
@@ -175,7 +182,7 @@ export const store: StoreType = {
                     status: 'here will be last message',
                     path: '4'
                 },
-            ]
+            ],
         },
         sideBar: {
             title: 'I\'m Following',
@@ -201,33 +208,36 @@ export const store: StoreType = {
             ],
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         console.log('state changed');
     },
-    addPost() {
-        const newPost: PostType = {
-            id: v1(),
-            name: this._state.profilePage.header.name,
-            date: new Date().toLocaleString().slice(0, 10),
-            postContent: this._state.profilePage.postTextValue,
-            likes: 0,
-            comments: 0
-        }
-        this._state.profilePage.posts.unshift(newPost);
-        this._state.profilePage.postTextValue = '';
 
-        this._callSubscriber();
-    },
-    changePostText(value: string): void {
-        this._state.profilePage.postTextValue = value;
-        this._callSubscriber();
-    },
-    subscribe(observer: () => void): void {
+    subscribe(observer) {
         this._callSubscriber = observer;
     },
+    getState() {
+        return this._state;
+    },
+
+    dispatch(action) { // описывается какое действие совершить {type: 'ADD-POST'}
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: v1(),
+                name: this._state.profilePage.header.name,
+                date: new Date().toLocaleString().slice(0, 10),
+                postContent: this._state.profilePage.postTextValue,
+                likes: 0,
+                comments: 0
+            }
+            this._state.profilePage.posts.unshift(newPost);
+            this._state.profilePage.postTextValue = '';
+
+            this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.postTextValue = action.newText;
+            this._callSubscriber();
+        }
+    }
 }
 
 
