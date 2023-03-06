@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './SubmitPost.module.css'
 import {Button} from 'antd';
-import {ActionsType} from '../../../../../redux/state';
+import {ActionsType, addPostActionCreator, ChangeNewPostTextActionCreator} from '../../../../../redux/state';
 
 type PropsType = {
     postTextValue: string
@@ -11,10 +11,10 @@ type PropsType = {
 export function SubmitPost({postTextValue, dispatch}: PropsType) {
 
     const addPostHandler = () => {
-        dispatch({type: 'ADD-POST'});
+        dispatch(addPostActionCreator());
     }
     const onChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-            dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value});
+            dispatch(ChangeNewPostTextActionCreator(e.currentTarget.value));
     }
 
     return (
