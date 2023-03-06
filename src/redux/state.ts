@@ -35,21 +35,30 @@ export type FollowingUserType = {
     size: number,
     url: string
 }
+
 type AddPostActiontype = {
     type: 'ADD-POST'
 }
-type ChangenewPostTextActionType = {
+type AddMessageActionType = {
+    type: 'ADD-MESSAGE'
+}
+type ChangeNewPostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
+type ChangeNewMessageTextActionType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newText: string
+}
 
-export type ActionsType = AddPostActiontype | ChangenewPostTextActionType
+export type ActionsType = AddPostActiontype | AddMessageActionType | ChangeNewPostTextActionType | ChangeNewMessageTextActionType
 export type ProfilePageType = {
     postTextValue: string
     header: ProfilePageHeaderType
     posts: Array<PostType>
 }
 export type DialogsPageType = {
+    newMessageText: string
     messages: Array<MessageType>
     dialogs: Array<DialogType>
 }
@@ -72,9 +81,17 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
+
+const ADD_POST = 'ADD-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
+
 export const store: StoreType = {
     _state: {
         profilePage: {
+            postTextValue: '',
             header: {
                 online: true,
                 url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg',
@@ -83,7 +100,6 @@ export const store: StoreType = {
                 iconId: 'location',
                 title: 'Saint-Petersburg',
             },
-            postTextValue: '',
             posts: [
                 {
                     id: v1(),
@@ -121,6 +137,7 @@ export const store: StoreType = {
             ]
         },
         dialogsPage: {
+            newMessageText: '',
             messages: [
                 {
                     id: v1(),
@@ -219,26 +236,52 @@ export const store: StoreType = {
         return this._state;
     },
 
-    dispatch(action) { // описывается какое действие совершить {type: 'ADD-POST'}
+    dispatch(action) {
         if (action.type === 'ADD-POST') {
             const newPost: PostType = {
                 id: v1(),
                 name: this._state.profilePage.header.name,
-                date: new Date().toLocaleString().slice(0, 10),
+                date: new Date().toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: 'numeric'}).slice(0,12),
                 postContent: this._state.profilePage.postTextValue,
                 likes: 0,
                 comments: 0
             }
             this._state.profilePage.posts.unshift(newPost);
             this._state.profilePage.postTextValue = '';
-
             this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        }
+        else if (action.type === 'ADD-MESSAGE') {
+            const newMessage: MessageType = {
+                id: v1(),
+                text: this._state.dialogsPage.newMessageText,
+                status: new Date().toTimeString().slice(0, 5),
+                url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg'
+
+
+
+            }
+            this._state.dialogsPage.messages.push(newMessage);
+            this._state.dialogsPage.newMessageText = '';
+            this._callSubscriber();
+        }
+        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.postTextValue = action.newText;
+            this._callSubscriber();
+        }
+        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.newText;
             this._callSubscriber();
         }
     }
 }
+
+export const addPostActionCreator = (): AddPostActiontype => ({type: ADD_POST});
+export const ChangeNewPostTextActionCreator = (newText: string): ChangeNewPostTextActionType => ({type: UPDATE_NEW_POST_TEXT, newText: newText});
+
+export const addMessageActionCreator = (): AddMessageActionType => ({type: ADD_MESSAGE})
+export const changeNewMessageTextActionCreator = (newText: string): ChangeNewMessageTextActionType => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText});
+
+
 
 
 
