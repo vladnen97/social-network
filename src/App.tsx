@@ -3,20 +3,18 @@ import './App.css';
 import {Header} from "./components/Header/Header";
 import {SideBar} from "./components/SideBar/SideBar";
 import {Content} from "./components/Content/Content";
-import {StateType} from './redux/state';
+import {StoreType} from './redux/state';
 
 type PropsType = {
-    changePostText: (value: string) => void
-    addPost: () => void
-    state: StateType
+    store: StoreType
 }
 
-function App({state, addPost, changePostText}: PropsType) {
+function App({store}: PropsType) {
     return (
             <div className={"app-wrapper"}>
                 <Header/>
-                <SideBar sideBar={state.sideBar}/>
-                <Content profile={state.profilePage} dialogs={state.dialogsPage} addPost={addPost} changePostText={changePostText}/>
+                <SideBar sideBar={store.getState().sideBar}/>
+                <Content profile={store.getState().profilePage} dialogs={store.getState().dialogsPage} dispatch={store.dispatch.bind(store)}/>
             </div>
     );
 }

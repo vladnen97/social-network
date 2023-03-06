@@ -1,20 +1,20 @@
 import React, {ChangeEvent} from 'react';
 import s from './SubmitPost.module.css'
 import {Button} from 'antd';
+import {ActionsType} from '../../../../../redux/state';
 
 type PropsType = {
-    addPost: () => void
-    changePostText: (value: string) => void
     postTextValue: string
+    dispatch: (action: ActionsType) => void
 }
 
-export function SubmitPost({addPost, postTextValue, changePostText}: PropsType) {
+export function SubmitPost({postTextValue, dispatch}: PropsType) {
 
     const addPostHandler = () => {
-        addPost();
+        dispatch({type: 'ADD-POST'});
     }
-    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-            changePostText(e.currentTarget.value);
+    const onChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+            dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value});
     }
 
     return (
@@ -23,7 +23,7 @@ export function SubmitPost({addPost, postTextValue, changePostText}: PropsType) 
                       cols={50}
                       rows={3}
                       value={postTextValue}
-                      onChange={onChangeHandler}/>
+                      onChange={onChangeTextHandler}/>
             <Button size={'large'} onClick={addPostHandler}> Post </Button>
         </div>
     );
