@@ -1,4 +1,7 @@
 import {v1} from 'uuid';
+import profileReducer, {addPostActionCreator, ChangeNewPostTextActionCreator} from './profileReducer';
+import dialogsReducer, {addMessageActionCreator, changeNewMessageTextActionCreator} from './dialogsReducer';
+import sideBarReducer from './sideBarReducer';
 
 export type PostType = {
     id: string
@@ -216,47 +219,20 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: v1(),
-                name: this._state.profilePage.header.name,
-                date: new Date().toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: 'numeric'}).slice(0,12),
-                postContent: this._state.profilePage.postTextValue,
-                likes: 0,
-                comments: 0
-            }
-            this._state.profilePage.posts.unshift(newPost);
-            this._state.profilePage.postTextValue = '';
-            this._callSubscriber();
-        }
-        else if (action.type === 'ADD-MESSAGE') {
-            const newMessage: MessageType = {
-                id: v1(),
-                text: this._state.dialogsPage.newMessageText,
-                status: new Date().toTimeString().slice(0, 5),
-                url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg'
-            }
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = '';
-            this._callSubscriber();
-        }
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.postTextValue = action.newText;
-            this._callSubscriber();
-        }
-        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newText;
-            this._callSubscriber();
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sideBar     = sideBarReducer(this._state.sideBar, action);
+
+        this._callSubscriber();
+
     }
 }
 
 
-export const addPostActionCreator = () => ({type: 'ADD-POST'} as const);
-export const ChangeNewPostTextActionCreator = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const);
 
-export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'} as const)
-export const changeNewMessageTextActionCreator = (newText: string) => ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: newText} as const);
+
+
 
 
 
