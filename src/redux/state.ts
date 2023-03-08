@@ -235,9 +235,6 @@ export const store: StoreType = {
                 text: this._state.dialogsPage.newMessageText,
                 status: new Date().toTimeString().slice(0, 5),
                 url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg'
-
-
-
             }
             this._state.dialogsPage.messages.push(newMessage);
             this._state.dialogsPage.newMessageText = '';
