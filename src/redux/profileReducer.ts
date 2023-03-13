@@ -45,7 +45,6 @@ const initialState: ProfilePageType= {
             likes: 23,
             comments: 0
         },
-
     ]
 }
 
