@@ -16,13 +16,14 @@ function profileReducer(state: ProfilePageType, action: ActionsType) {
             }
             state.posts.unshift(newPost);
             state.postTextValue = '';
-            break;
+            return state;
         case 'UPDATE-NEW-POST-TEXT':
             state.postTextValue = action.newText;
-            break;
+            return state;
+        default:
+            return state;
     }
 
-    return state
 }
 
 export const addPostActionCreator = () => ({type: 'ADD-POST'} as const);

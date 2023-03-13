@@ -14,13 +14,15 @@ function dialogsReducer(state: DialogsPageType, action: ActionsType) {
             }
             state.messages.push(newMessage);
             state.newMessageText = '';
-            break;
+            return state;
         case 'UPDATE-NEW-MESSAGE-TEXT':
             state.newMessageText = action.newText;
-            break;
+            return state;
+        default:
+            return state;
     }
 
-    return state
+
 }
 
 export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'} as const)
