@@ -3,24 +3,25 @@ import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
 import {Divider} from 'antd';
-import {ActionsType, DialogsPageType} from '../../../redux/store';
-import {addMessageActionCreator, changeNewMessageTextActionCreator} from '../../../redux/dialogsReducer';
+import {DialogsPageType} from '../../../redux/store';
+
 
 type PropsType = {
+    updateNewMessageText: (value: string) => void
+    addNewMessage: () => void
     dialogsData: DialogsPageType
-    dispatch: (action: ActionsType) => void
 }
 
 
-export function Dialogs({dialogsData: {messages, dialogs, newMessageText}, dispatch}: PropsType) {
+export function Dialogs({addNewMessage, updateNewMessageText, dialogsData}: PropsType) {
 
-    const addNewMessageHandler = () => dispatch(addMessageActionCreator())
+    const addNewMessageHandler = () => addNewMessage()
     const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(changeNewMessageTextActionCreator(e.currentTarget.value));
+        updateNewMessageText(e.currentTarget.value)
     }
 
-    const mappedDialogs = dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url} status={el.status} path={el.path}/>);
-    const mappedMessages = messages.map(el => <Message key={el.id} url={el.url} text={el.text} status={el.status}/>);
+    const mappedDialogs = dialogsData.dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url} status={el.status} path={el.path}/>);
+    const mappedMessages = dialogsData.messages.map(el => <Message key={el.id} url={el.url} text={el.text} status={el.status}/>);
 
 
     return (
@@ -35,10 +36,10 @@ export function Dialogs({dialogsData: {messages, dialogs, newMessageText}, dispa
                 <div className={s.sendMessage}> {/*доработать*/}
                     <textarea className={s.textArea}
                               placeholder={'Write a message...'}
-                              value={newMessageText}
+                              value={dialogsData.newMessageText}
                               onChange={updateNewMessageTextHandler}
                     />
-                    <button onClick={addNewMessageHandler} className={s.sendButton}> send</button>
+                    <button onClick={addNewMessageHandler} className={s.sendButton}> send </button>
                 </div>
             </div>
 

@@ -1,21 +1,21 @@
 import React, {ChangeEvent} from 'react';
 import s from './SubmitPost.module.css'
 import {Button} from 'antd';
-import {ActionsType} from '../../../../../redux/store';
-import {addPostActionCreator, ChangeNewPostTextActionCreator} from '../../../../../redux/profileReducer';
+
 
 type PropsType = {
     postTextValue: string
-    dispatch: (action: ActionsType) => void
+    updateNewPostText: (value: string) => void
+    addPost: () => void
 }
 
-export function SubmitPost({postTextValue, dispatch}: PropsType) {
+export function SubmitPost({postTextValue, updateNewPostText, addPost}: PropsType) {
 
     const addPostHandler = () => {
-        dispatch(addPostActionCreator());
+        addPost()
     }
     const onChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-            dispatch(ChangeNewPostTextActionCreator(e.currentTarget.value));
+        updateNewPostText(e.currentTarget.value);
     }
 
     return (
