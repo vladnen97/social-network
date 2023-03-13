@@ -1,18 +1,16 @@
 import React from "react";
 import s from "./Wall.module.css"
 import {Post} from "./Post/Post";
-import {SubmitPost} from './SubmitPost/SubmitPost';
-import {ActionsType, PostType} from '../../../../redux/store';
+import {StoreType} from '../../../../redux/store';
+import {SubmitPostContainer} from './SubmitPost/SubmitPostContainer';
 
 type PropsType = {
-    postTextValue: string
-    posts: Array<PostType>
-    dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 
-export function Wall({posts, postTextValue, dispatch}: PropsType) {
+export function Wall({store}: PropsType) {
 
-    const wallElements = posts.map( (p) => {
+    const wallElements = store.getState().profilePage.posts.map( (p) => {
         return (
             <Post key={p.id} name={p.name} date={p.date} postContent={p.postContent} likes={p.likes} comments={p.comments}/>
         )
@@ -20,7 +18,7 @@ export function Wall({posts, postTextValue, dispatch}: PropsType) {
 
     return (
         <div className={s.wall}>
-            <SubmitPost postTextValue={postTextValue} dispatch={dispatch}/>
+            <SubmitPostContainer store={store}/>
             { wallElements }
         </div>
     );

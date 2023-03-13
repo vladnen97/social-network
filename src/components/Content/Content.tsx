@@ -2,25 +2,23 @@ import React from 'react';
 import c from './Content.module.css';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import {Profile} from './Profile/Profile';
-import {Dialogs} from './Dialogs/Dialogs';
 import {News} from './News/News';
 import {Music} from './Music/Music';
-import {ActionsType, DialogsPageType, ProfilePageType} from '../../redux/store';
+import {StoreType} from '../../redux/store';
+import {DialogsContainer} from './Dialogs/DialogsContainer';
 
 type PropsType = {
-    profile: ProfilePageType
-    dialogs: DialogsPageType
-    dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 
-export function Content({profile, dialogs, dispatch}: PropsType) {
+export function Content({store}: PropsType) {
     return (
         <div className={c.content}>
             <Routes>
                 <Route path="/" element={<Navigate to={'profile'}/>}/>
 
-                <Route path="profile" element={<Profile profileData={profile} dispatch={dispatch}/>}/>
-                <Route path="dialogs/*" element={<Dialogs dialogsData={dialogs} dispatch={dispatch}/>}/>
+                <Route path="profile" element={<Profile store={store}/>}/>
+                <Route path="dialogs/*" element={<DialogsContainer store={store}/>}/>
                 <Route path="news" element={<News/>}/>
                 <Route path="music" element={<Music/>}/>
 

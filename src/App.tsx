@@ -14,7 +14,7 @@ function App({store}: PropsType) {
             <div className={"app-wrapper"}>
                 <Header/>
                 <SideBar sideBar={store.getState().sideBar}/>
-                <Content profile={store.getState().profilePage} dialogs={store.getState().dialogsPage} dispatch={store.dispatch.bind(store)}/>
+                <Content store={store}/>
             </div>
     );
 }

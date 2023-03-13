@@ -1,18 +1,18 @@
 import React from 'react';
 import {Header} from "./Header/Header";
 import {Wall} from "./Wall/Wall";
-import {ActionsType, ProfilePageType} from '../../../redux/store';
+import {StoreType} from '../../../redux/store';
 
 type PropsType = {
-    profileData: ProfilePageType
-    dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 
-export function Profile({profileData, dispatch}: PropsType) {
+export function Profile({store}: PropsType) {
+
     return (
         <div className={'profile'}>
-            <Header header={profileData.header}/>
-            <Wall posts={profileData.posts} postTextValue={profileData.postTextValue} dispatch={dispatch}/>
+            <Header header={store.getState().profilePage.header}/>
+            <Wall store={store}/>
         </div>
     );
 }
