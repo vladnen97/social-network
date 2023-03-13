@@ -5,7 +5,7 @@ import {Profile} from './Profile/Profile';
 import {Dialogs} from './Dialogs/Dialogs';
 import {News} from './News/News';
 import {Music} from './Music/Music';
-import {ActionsType, DialogsPageType, ProfilePageType} from '../../redux/state';
+import {ActionsType, DialogsPageType, ProfilePageType} from '../../redux/store';
 
 type PropsType = {
     profile: ProfilePageType

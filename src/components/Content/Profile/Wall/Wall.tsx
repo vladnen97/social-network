@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Wall.module.css"
 import {Post} from "./Post/Post";
 import {SubmitPost} from './SubmitPost/SubmitPost';
-import {ActionsType, PostType} from '../../../../redux/state';
+import {ActionsType, PostType} from '../../../../redux/store';
 
 type PropsType = {
     postTextValue: string

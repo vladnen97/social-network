@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from "./Header/Header";
 import {Wall} from "./Wall/Wall";
-import {ActionsType, ProfilePageType} from '../../../redux/state';
+import {ActionsType, ProfilePageType} from '../../../redux/store';
 
 type PropsType = {
     profileData: ProfilePageType

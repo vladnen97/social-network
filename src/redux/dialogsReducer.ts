@@ -1,4 +1,4 @@
-import {ActionsType, DialogsPageType, MessageType} from './state';
+import {ActionsType, DialogsPageType, MessageType} from './store';
 import {v1} from 'uuid';
 
 

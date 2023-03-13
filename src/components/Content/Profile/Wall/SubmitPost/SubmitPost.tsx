@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './SubmitPost.module.css'
 import {Button} from 'antd';
-import {ActionsType} from '../../../../../redux/state';
+import {ActionsType} from '../../../../../redux/store';
 import {addPostActionCreator, ChangeNewPostTextActionCreator} from '../../../../../redux/profileReducer';
 
 type PropsType = {
