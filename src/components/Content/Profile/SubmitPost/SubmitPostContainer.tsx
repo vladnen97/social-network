@@ -1,6 +1,6 @@
 import React from 'react';
-import {StoreType} from '../../../../../redux/store';
-import {addPostActionCreator, ChangeNewPostTextActionCreator} from '../../../../../redux/profileReducer';
+import {StoreType} from '../../../../redux/store';
+import {addPostActionCreator, ChangeNewPostTextActionCreator} from '../../../../redux/profileReducer';
 import {SubmitPost} from './SubmitPost';
 
 type PropsType = {
