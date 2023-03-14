@@ -3,7 +3,7 @@ import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
 import {Divider} from 'antd';
-import {DialogsPageType} from '../../../redux/store';
+import {DialogsPageType} from '../../../redux/dialogsReducer';
 
 
 type PropsType = {

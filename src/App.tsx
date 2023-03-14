@@ -1,20 +1,16 @@
 import React from 'react';
 import './App.css';
 import {Header} from "./components/Header/Header";
-import {SideBar} from "./components/SideBar/SideBar";
 import {Content} from "./components/Content/Content";
-import {StoreType} from './redux/store';
+import {SideBarContainer} from './components/SideBar/SideBarContainer';
 
-type PropsType = {
-    store: StoreType
-}
 
-function App({store}: PropsType) {
+function App() {
     return (
             <div className={"app-wrapper"}>
                 <Header/>
-                <SideBar sideBar={store.getState().sideBar}/>
-                <Content store={store}/>
+                <SideBarContainer/>
+                <Content/>
             </div>
     );
 }

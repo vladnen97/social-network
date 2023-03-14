@@ -4,7 +4,7 @@ import {MainAvatar} from './HeaderComp/MainAvatar';
 import {MainName} from './HeaderComp/MainName';
 import {MainStatus} from './HeaderComp/MainStatus';
 import {InfoTag} from './HeaderComp/InfoTag';
-import {ProfilePageHeaderType} from '../../../../redux/store';
+import {ProfilePageHeaderType} from '../../../../redux/profileReducer';
 
 type PropsType = {
     header: ProfilePageHeaderType

@@ -2,7 +2,7 @@ import React from 'react';
 import {CardUser} from '../../Profile/UserCard/CardUser';
 import s from './Dialog.module.css';
 import {NavLink} from 'react-router-dom';
-import {DialogType} from '../../../../redux/store';
+import {DialogType} from '../../../../redux/dialogsReducer';
 
 type PropsType = Omit<DialogType, 'id'>
 

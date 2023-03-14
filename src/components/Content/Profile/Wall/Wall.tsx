@@ -2,7 +2,7 @@ import React from 'react';
 import {Post} from '../Post/Post';
 import s from './Wall.module.css';
 import {SubmitPost} from '../SubmitPost/SubmitPost';
-import {PostType} from '../../../../redux/store';
+import {PostType} from '../../../../redux/profileReducer';
 
 
 type PropsType = {
