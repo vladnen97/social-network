@@ -1,18 +1,16 @@
 import React from 'react';
-import {Header} from "./Header/Header";
-import {StoreType} from '../../../redux/store';
 import {WallContainer} from './Wall/WallContainer';
+import {HeaderContainer} from './Header/HeaderContainer';
 
-type PropsType = {
-    store: StoreType
-}
 
-export function Profile({store}: PropsType) {
+export function Profile() {
 
     return (
         <div>
-            <Header header={store.getState().profilePage.header}/>
-            <WallContainer store={store}/>
+
+            <HeaderContainer/>
+            <WallContainer/>
+
         </div>
     );
 }
