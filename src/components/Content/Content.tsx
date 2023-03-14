@@ -4,21 +4,17 @@ import {Navigate, Route, Routes} from 'react-router-dom';
 import {Profile} from './Profile/Profile';
 import {News} from './News/News';
 import {Music} from './Music/Music';
-import {StoreType} from '../../redux/store';
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 
-type PropsType = {
-    store: StoreType
-}
 
-export function Content({store}: PropsType) {
+export function Content() {
     return (
         <div className={c.content}>
             <Routes>
                 <Route path="/" element={<Navigate to={'profile'}/>}/>
 
-                <Route path="profile" element={<Profile store={store}/>}/>
-                <Route path="dialogs/*" element={<DialogsContainer store={store}/>}/>
+                <Route path="profile" element={<Profile/>}/>
+                <Route path="dialogs/*" element={<DialogsContainer/>}/>
                 <Route path="news" element={<News/>}/>
                 <Route path="music" element={<Music/>}/>
 
