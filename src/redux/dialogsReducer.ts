@@ -1,7 +1,29 @@
-import {ActionsType, DialogsPageType, MessageType} from './store';
 import {v1} from 'uuid';
 
 
+type MessageType = {
+    id: string
+    text: string
+    url: string
+    status: string
+}
+export type DialogType = {
+    id: string
+    name: string
+    url: string
+    status: string
+    path: string
+}
+export type DialogsPageType = {
+    newMessageText: string
+    messages: Array<MessageType>
+    dialogs: Array<DialogType>
+}
+type DialogsPageActionsType = ReturnType<typeof addMessageActionCreator> | ReturnType<typeof changeNewMessageTextActionCreator>
+
+
+const ADD_MESSAGE = 'ADD-MESSAGE'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 const initialState: DialogsPageType = {
     newMessageText: '',
     messages: [
@@ -69,10 +91,10 @@ const initialState: DialogsPageType = {
 }
 
 
-function dialogsReducer(state: DialogsPageType = initialState, action: ActionsType): DialogsPageType {
+function dialogsReducer(state: DialogsPageType = initialState, action: DialogsPageActionsType): DialogsPageType {
 
     switch (action.type) {
-        case 'ADD-MESSAGE':
+        case ADD_MESSAGE:
             const newMessage: MessageType = {
                 id: v1(),
                 text: state.newMessageText,
@@ -82,7 +104,7 @@ function dialogsReducer(state: DialogsPageType = initialState, action: ActionsTy
             state.messages.push(newMessage);
             state.newMessageText = '';
             return state;
-        case 'UPDATE-NEW-MESSAGE-TEXT':
+        case UPDATE_NEW_MESSAGE_TEXT:
             state.newMessageText = action.newText;
             return state;
         default:
@@ -92,7 +114,7 @@ function dialogsReducer(state: DialogsPageType = initialState, action: ActionsTy
 
 }
 
-export const addMessageActionCreator = () => ({type: 'ADD-MESSAGE'} as const)
-export const changeNewMessageTextActionCreator = (newText: string) => ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: newText} as const);
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE} as const)
+export const changeNewMessageTextActionCreator = (newText: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText} as const);
 
 export default dialogsReducer;

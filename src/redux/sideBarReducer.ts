@@ -1,5 +1,19 @@
-import {ActionsType, SideBarType} from './store';
 import {v1} from 'uuid';
+
+
+export type FollowingUserType = {
+    id: string
+    name: string
+    size: number,
+    url: string
+}
+export type SideBarType = {
+    title: string
+    followingUsers: Array<FollowingUserType>
+}
+type SideBarActionType = {
+    type: "None"
+}
 
 
 const initialState: SideBarType = {
@@ -27,7 +41,7 @@ const initialState: SideBarType = {
 }
 
 
-function sideBarReducer(state: SideBarType = initialState, action: ActionsType) {
+function sideBarReducer(state: SideBarType = initialState, action: SideBarActionType) {
 
 
     return state
