@@ -1,75 +1,75 @@
-import {v1} from 'uuid';
-import profileReducer, {addPostActionCreator, ChangeNewPostTextActionCreator} from './profileReducer';
-import dialogsReducer, {addMessageActionCreator, changeNewMessageTextActionCreator} from './dialogsReducer';
-import sideBarReducer from './sideBarReducer';
+export const a = 1;
 
-export type PostType = {
-    id: string
-    name: string
-    date: string
-    postContent: string
-    likes: number
-    comments: number
-}
-export type ProfilePageHeaderType = {
-    online: boolean
-    url: string
-    name: string
-    status: string
-    iconId: string
-    title: string
-}
-export type MessageType = {
-    id: string
-    text: string
-    url: string
-    status: string
-}
-export type DialogType = {
-    id: string
-    name: string
-    url: string
-    status: string
-    path: string
-}
-export type FollowingUserType = {
-    id: string
-    name: string
-    size: number,
-    url: string
-}
-
-export type ActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof addMessageActionCreator> | ReturnType<typeof ChangeNewPostTextActionCreator> | ReturnType<typeof changeNewMessageTextActionCreator>
-
-export type ProfilePageType = {
-    postTextValue: string
-    header: ProfilePageHeaderType
-    posts: Array<PostType>
-}
-export type DialogsPageType = {
-    newMessageText: string
-    messages: Array<MessageType>
-    dialogs: Array<DialogType>
-}
-export type SideBarType = {
-    title: string
-    followingUsers: Array<FollowingUserType>
-}
-
-export type StateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sideBar: SideBarType
-}
-export type StoreType = {
-    // _state: StateType
-    // _callSubscriber: () => void
-    subscribe: (observer: () => void) => void
-    getState: () => StateType
-    dispatch: (action: ActionsType) => void
-}
-
-
+// import {v1} from 'uuid';
+// import profileReducer, {addPostActionCreator, ChangeNewPostTextActionCreator} from './profileReducer';
+// import dialogsReducer, {addMessageActionCreator, changeNewMessageTextActionCreator} from './dialogsReducer';
+// import sideBarReducer from './sideBarReducer';
+// export type PostType = {
+//     id: string
+//     name: string
+//     date: string
+//     postContent: string
+//     likes: number
+//     comments: number
+// }
+// export type ProfilePageHeaderType = {
+//     online: boolean
+//     url: string
+//     name: string
+//     status: string
+//     iconId: string
+//     title: string
+// }
+// export type MessageType = {
+//     id: string
+//     text: string
+//     url: string
+//     status: string
+// }
+// export type DialogType = {
+//     id: string
+//     name: string
+//     url: string
+//     status: string
+//     path: string
+// }
+// export type FollowingUserType = {
+//     id: string
+//     name: string
+//     size: number,
+//     url: string
+// }
+//
+// export type ActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof addMessageActionCreator> | ReturnType<typeof ChangeNewPostTextActionCreator> | ReturnType<typeof changeNewMessageTextActionCreator>
+//
+// export type ProfilePageType = {
+//     postTextValue: string
+//     header: ProfilePageHeaderType
+//     posts: Array<PostType>
+// }
+// export type DialogsPageType = {
+//     newMessageText: string
+//     messages: Array<MessageType>
+//     dialogs: Array<DialogType>
+// }
+// export type SideBarType = {
+//     title: string
+//     followingUsers: Array<FollowingUserType>
+// }
+//
+// export type StateType = {
+//     profilePage: ProfilePageType
+//     dialogsPage: DialogsPageType
+//     sideBar: SideBarType
+// }
+// export type StoreType = {
+//     // _state: StateType
+//     // _callSubscriber: () => void
+//     subscribe: (observer: () => void) => void
+//     getState: () => StateType
+//     dispatch: (action: ActionsType) => void
+// }
+//
 // export const store: StoreType = {
 //     _state: {
 //         profilePage: {
