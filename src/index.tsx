@@ -4,11 +4,11 @@ import {BrowserRouter} from 'react-router-dom';
 import App from './App';
 import './index.css';
 import 'antd/dist/antd.css';
-import store from './redux/redux-store';
-import {Provider} from './storeContext';
+import store, {StoreType} from './redux/redux-store';
+import {Provider} from 'react-redux';
 
 
-function rerenderEntireTree(store: any) {
+function rerenderEntireTree(store: StoreType) {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
