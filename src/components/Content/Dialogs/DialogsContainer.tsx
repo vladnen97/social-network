@@ -1,34 +1,33 @@
-import React from 'react';
-import {addMessageActionCreator, changeNewMessageTextActionCreator} from '../../../redux/dialogsReducer';
+import {addMessageActionCreator, changeNewMessageTextActionCreator, DialogsPageType} from '../../../redux/dialogsReducer';
 import {Dialogs} from './Dialogs';
-import StoreContext from '../../../storeContext';
+import {connect} from 'react-redux';
+import {RootStateType} from '../../../redux/redux-store';
+import {Dispatch} from 'redux';
 
 
-export function DialogsContainer() {
-
-    return (
-    <StoreContext.Consumer>
-        {
-            (store) => {
-
-                const dialogsPage = store.getState().dialogsPage
-
-                const addNewMessage = (): void => {
-                    store.dispatch(addMessageActionCreator())
-                }
-                const updateNewMessageText = (value: string): void => {
-                    store.dispatch(changeNewMessageTextActionCreator(value));
-                }
-
-                return <Dialogs updateNewMessageText={updateNewMessageText}
-                                        addNewMessage={addNewMessage}
-                                        dialogsData={dialogsPage}
-                />
-            }
-        }
-    </StoreContext.Consumer>
-    )
+type MapStateToPropsType = {
+    dialogsData: DialogsPageType
 }
+type MapDispatchToPropsType = {
+    addNewMessage: () => void
+    updateNewMessageText: (value: string) => void
+}
+export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
+
+const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
+    return {
+        dialogsData: state.dialogsPage
+    }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+    return {
+        addNewMessage: () => {dispatch(addMessageActionCreator())},
+        updateNewMessageText: (value: string) => {dispatch(changeNewMessageTextActionCreator(value))}
+    }
+}
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 
 

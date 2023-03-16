@@ -1,16 +1,18 @@
-import React from 'react';
-import StoreContext from '../../../../storeContext';
 import {Header} from "./Header";
+import {connect} from 'react-redux';
+import {RootStateType} from '../../../../redux/redux-store';
+import {ProfilePageHeaderType} from '../../../../redux/profileReducer';
 
 
-
-export function HeaderContainer() {
-
-    return (
-        <StoreContext.Consumer>
-            {
-               store =>  <Header header={store.getState().profilePage.header}/>
-            }
-        </StoreContext.Consumer>
-    )
+type MapStateToPropsType = {
+    header: ProfilePageHeaderType
 }
+export type HeaderPropsType = MapStateToPropsType
+
+const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
+    return {
+        header: state.profilePage.header
+    }
+}
+
+export const HeaderContainer = connect(mapStateToProps)(Header)
