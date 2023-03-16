@@ -22,7 +22,7 @@ type ProfilePageType = {
     header: ProfilePageHeaderType
     posts: Array<PostType>
 }
-type ProfilePageActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof ChangeNewPostTextActionCreator>
+export type ProfilePageActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof ChangeNewPostTextActionCreator>
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'

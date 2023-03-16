@@ -19,7 +19,7 @@ export type DialogsPageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
 }
-type DialogsPageActionsType = ReturnType<typeof addMessageActionCreator> | ReturnType<typeof changeNewMessageTextActionCreator>
+export type DialogsPageActionsType = ReturnType<typeof addMessageActionCreator> | ReturnType<typeof changeNewMessageTextActionCreator>
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
