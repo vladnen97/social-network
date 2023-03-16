@@ -3,17 +3,11 @@ import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
 import {Divider} from 'antd';
-import {DialogsPageType} from '../../../redux/dialogsReducer';
+import {DialogsPropsType} from './DialogsContainer';
 
 
-type PropsType = {
-    updateNewMessageText: (value: string) => void
-    addNewMessage: () => void
-    dialogsData: DialogsPageType
-}
 
-
-export function Dialogs({addNewMessage, updateNewMessageText, dialogsData}: PropsType) {
+export function Dialogs({addNewMessage, updateNewMessageText, dialogsData}: DialogsPropsType) {
 
     const addNewMessageHandler = () => addNewMessage()
     const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

@@ -2,17 +2,10 @@ import React from 'react';
 import {Post} from '../Post/Post';
 import s from './Wall.module.css';
 import {SubmitPost} from '../SubmitPost/SubmitPost';
-import {PostType} from '../../../../redux/profileReducer';
+import {WallPropsType} from './WallContainer';
 
 
-type PropsType = {
-    posts: Array<PostType>
-    postTextValue: string
-    onChangeText: (value: string) => void
-    addPost: () => void
-}
-
-export function Wall({posts, addPost, onChangeText, postTextValue}: PropsType) {
+export function Wall({posts, addPost, onChangeText, postTextValue}: WallPropsType) {
 
     const mappedPosts = posts.map( (p) => {
         return (

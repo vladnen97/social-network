@@ -2,13 +2,11 @@ import React from 'react';
 import s from './SideBar.module.css';
 import {Nav} from './Nav/Nav';
 import {FollowBlock} from './FollowBlock/FollowBlock';
-import {SideBarType} from '../../redux/sideBarReducer';
+import {SideBarPropsType} from './SideBarContainer';
 
-type PropsType = {
-    sideBar: SideBarType
-}
 
-export function SideBar({sideBar}: PropsType) {
+
+export function SideBar({sideBar}: SideBarPropsType) {
 
 
     return (

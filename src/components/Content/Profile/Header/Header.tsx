@@ -4,13 +4,10 @@ import {MainAvatar} from './HeaderComp/MainAvatar';
 import {MainName} from './HeaderComp/MainName';
 import {MainStatus} from './HeaderComp/MainStatus';
 import {InfoTag} from './HeaderComp/InfoTag';
-import {ProfilePageHeaderType} from '../../../../redux/profileReducer';
+import {HeaderPropsType} from './HeaderContainer';
 
-type PropsType = {
-    header: ProfilePageHeaderType
-}
 
-export function Header({ header: {online, url, name, title, status, iconId}}:PropsType) {
+export function Header({ header: {online, url, name, title, status, iconId}}: HeaderPropsType) {
 
     return (
         <div className={s.header}>
