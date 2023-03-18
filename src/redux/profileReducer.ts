@@ -86,12 +86,16 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
                 likes: 0,
                 comments: 0
             }
-            state.posts.unshift(newPost);
-            state.postTextValue = '';
-            return state;
+            return {
+                ...state,
+                postTextValue: '',
+                posts: [newPost, ...state.posts]
+            }
         case UPDATE_NEW_POST_TEXT:
-            state.postTextValue = action.newText;
-            return state;
+            return {
+                ...state,
+                postTextValue: action.newText
+            }
         default:
             return state;
     }
