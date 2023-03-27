@@ -1,10 +1,10 @@
 
 export type UserType = {
-    id: string
+    id: number
+    name: string
+    status: string | null
+    photos: {small: string | null, large: string | null}
     followed: boolean
-    fullName: string
-    status: string
-    location: {city: string, country: string}
 }
 
 const FOLLOW = 'FOLLOW';
@@ -24,12 +24,12 @@ function usersReducer(state: UsersPageType = initialState, action: UsersPageActi
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(el => el.id === action.userID ? {...el, followed: true}: el)
+                users: state.users.map(el => el.id === action.userId ? {...el, followed: true}: el)
             }
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(el => el.id === action.userID ? {...el, followed: false}: el)
+                users: state.users.map(el => el.id === action.userId ? {...el, followed: false}: el)
             }
         case SET_USERS:
             return {
@@ -42,8 +42,8 @@ function usersReducer(state: UsersPageType = initialState, action: UsersPageActi
 }
 
 
-export const followAC = (userID: string) => ({type: FOLLOW, userID } as const)
-export const unfollowAC = (userID: string) => ({type: UNFOLLOW, userID} as const)
+export const followAC = (userId: number) => ({type: FOLLOW, userId } as const)
+export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsersAC = (users: Array<UserType>) => ({type : SET_USERS, users} as const)
 
 export default usersReducer;
