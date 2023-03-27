@@ -8,8 +8,8 @@ type MapStateToPropsType = {
     users: Array<UserType>
 }
 type MapDispatchToPropsType = {
-    onFollowClick: (userId: string) => void
-    onUnFollowClick: (userId: string) => void
+    onFollowClick: (userId: number) => void
+    onUnFollowClick: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
 }
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
