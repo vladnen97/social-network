@@ -1,9 +1,9 @@
 import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 
-export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCount'>) => {
+export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCount' | 'isFetching' | 'setIsFetching'>) => {
 
-    const pagesCount = Math.ceil(props.totalCount / props.limit)
+    const pagesCount = Math.ceil(props.totalCount / 6)
     let pages = []
 
     for (let i = 1; i <= pagesCount; i++) {
