@@ -18,10 +18,10 @@ export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCou
                     props.users.map(el => {
 
                         const onFollowClickHandler = () => {
-                            props.onFollowClick(el.id)
+                            props.follow(el.id)
                         }
                         const onUnFollowClickHandler = () => {
-                            props.onUnFollowClick(el.id)
+                            props.unfollow(el.id)
                         }
 
                         return <div key={el.id} style={{
@@ -49,7 +49,7 @@ export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCou
             </div>
             <div style={ {paddingTop: '40px', display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '21px', alignItems: 'baseline'} }>
                 {
-                    pages.map(el => <span key={el} style={props.currentPage === el ? {fontSize: '25px', fontWeight: 'bold', cursor: 'pointer'} : {cursor: 'pointer'}} onClick={() => props.onPageClick(el)}>{el}</span>).slice(0,10)
+                    pages.map(el => <span key={el} style={props.currentPage === el ? {fontSize: '25px', fontWeight: 'bold', cursor: 'pointer'} : {cursor: 'pointer'}} onClick={() => props.setCurrentPage(el)}>{el}</span>).slice(0,10)
                 }
             </div>
         </>
