@@ -7,15 +7,21 @@ export type UserType = {
     followed: boolean
 }
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET-USERS';
+const FOLLOW = 'FOLLOW'
+const UNFOLLOW = 'UNFOLLOW'
+const SET_USERS = 'SET-USERS'
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
+
 const initialState = {
-    users: [] as Array<UserType>
+    users: [] as Array<UserType>,
+    limit: 6,
+    totalCount: 0,
+    currentPage: 1,
 }
 
 
-export type UsersPageActionType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC> | ReturnType<typeof setUsersAC>
+export type UsersPageActionType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC> | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC> | ReturnType<typeof setTotalUsersCountAC>
 export type UsersPageType = typeof initialState
 
 
@@ -34,7 +40,17 @@ function usersReducer(state: UsersPageType = initialState, action: UsersPageActi
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users]
+            }
+        case 'SET-CURRENT-PAGE':
+            return {
+                ...state,
+                currentPage: action.page
+            }
+        case 'SET-TOTAL-USERS-COUNT':
+            return {
+                ...state,
+                totalCount: action.count
             }
         default:
             return state
@@ -45,5 +61,7 @@ function usersReducer(state: UsersPageType = initialState, action: UsersPageActi
 export const followAC = (userId: number) => ({type: FOLLOW, userId } as const)
 export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsersAC = (users: Array<UserType>) => ({type : SET_USERS, users} as const)
+export const setCurrentPageAC = (page: number) => ({type : SET_CURRENT_PAGE, page} as const)
+export const setTotalUsersCountAC = (count: number) => ({type: SET_TOTAL_USERS_COUNT, count} as const)
 
 export default usersReducer;
