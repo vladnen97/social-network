@@ -1,4 +1,3 @@
-import {Users} from './Users';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../../redux/redux-store';
 import {Dispatch} from 'redux';
@@ -7,9 +6,12 @@ import {
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
-    unfollowAC,
+    unfollowAC, UsersPageType,
     UserType
 } from '../../../redux/usersReducer';
+import React from 'react';
+import axios from 'axios';
+import {Users} from './Users';
 
 type MapStateToPropsType = {
     users: Array<UserType>
@@ -26,6 +28,32 @@ type MapDispatchToPropsType = {
 }
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
+class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
+
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=6&page=${this.props.currentPage}`)
+            .then(res => {
+                this.props.setUsers(res.data.items)
+                this.props.setTotalUsersCount(res.data.totalCount)
+            })
+    }
+
+    onPageChanged = (page: number) => {
+        this.props.onPageClick(page)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=6&page=${page}`)
+            .then(res => {this.props.setUsers(res.data.items)})
+    }
+
+    render() {
+        return <Users users={this.props.users}
+                      limit={this.props.limit}
+                      totalCount={this.props.totalCount}
+                      currentPage={this.props.currentPage}
+                      onFollowClick={this.props.onFollowClick}
+                      onUnFollowClick={this.props.onUnFollowClick}
+                      onPageClick={this.onPageChanged}/>
+    }
+}
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
@@ -46,5 +74,5 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(Users)
+export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(UsersAPIComponent)
 
