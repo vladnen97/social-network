@@ -5,7 +5,7 @@ import {SubmitPost} from '../SubmitPost/SubmitPost';
 import {WallPropsType} from './WallContainer';
 
 
-export function Wall({posts, addPost, onChangeText, postTextValue}: WallPropsType) {
+export function Wall({posts, addPost, ChangeNewPostText, postTextValue}: WallPropsType) {
 
     const mappedPosts = posts.map( (p) => {
         return (
@@ -17,7 +17,7 @@ export function Wall({posts, addPost, onChangeText, postTextValue}: WallPropsTyp
     return (
         <div className={s.wall}>
             <SubmitPost postTextValue={postTextValue}
-                        updateNewPostText={onChangeText}
+                        updateNewPostText={ChangeNewPostText}
                         addPost={addPost}
             />
 

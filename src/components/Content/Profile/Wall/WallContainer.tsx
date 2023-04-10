@@ -1,8 +1,7 @@
-import {addPostActionCreator, ChangeNewPostTextActionCreator, PostType} from '../../../../redux/profileReducer';
+import {addPost, ChangeNewPostText, PostType} from '../../../../redux/profileReducer';
 import {Wall} from './Wall';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../../../redux/redux-store';
-import {Dispatch} from 'redux';
 
 
 type MapStateToPropsType = {
@@ -11,7 +10,7 @@ type MapStateToPropsType = {
 }
 type MapDispatchToPropsType = {
     addPost: () => void
-    onChangeText: (value: string) => void
+    ChangeNewPostText: (value: string) => void
 }
 export type WallPropsType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -23,16 +22,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-    return {
-        addPost: () => {
-            dispatch(addPostActionCreator())
-        },
-        onChangeText: (value: string) => {
-            dispatch(ChangeNewPostTextActionCreator(value))
-        }
-    }
-}
 
-export const WallContainer = connect(mapStateToProps, mapDispatchToProps)(Wall)
+export const WallContainer = connect(mapStateToProps, {addPost, ChangeNewPostText})(Wall)
 
