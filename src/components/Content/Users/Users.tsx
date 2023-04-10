@@ -1,5 +1,6 @@
 import React from 'react';
 import {UsersPropsType} from './UsersContainer';
+import {NavLink} from 'react-router-dom';
 
 export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCount' | 'isFetching' | 'setIsFetching'>) => {
 
@@ -35,7 +36,9 @@ export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCou
                             <img style={{width: '80px', height: '80px', borderRadius: '50%'}}
                                  src={el.photos.small || 'https://placehold.jp/150x150.png'} alt=""/>
                             <div style={{textAlign: 'center'}}>
-                                <h2>{el.name}</h2>
+                                <NavLink to={'/profile/' + el.id}>
+                                    <h2>{el.name}</h2>
+                                </NavLink>
                                 <div style={{fontSize: '17px', margin: '10px 5px'}}>
                                     <em>{el.status || 'status...'}</em>
                                 </div>
