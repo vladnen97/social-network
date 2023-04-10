@@ -1,9 +1,9 @@
 import React from 'react';
 import c from './Content.module.css';
 import {Navigate, Route, Routes} from 'react-router-dom';
-import {Profile} from './Profile/Profile';
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 import {UsersContainer} from './Users/UsersContainer';
+import {ProfileContainer} from './Profile/ProfileContainer';
 
 
 export function Content() {
@@ -12,7 +12,7 @@ export function Content() {
             <Routes>
                 <Route path="/" element={<Navigate to={'profile'}/>}/>
 
-                <Route path="profile" element={<Profile/>}/>
+                <Route path="profile/*" element={<ProfileContainer/>}/>
                 <Route path="dialogs/*" element={<DialogsContainer/>}/>
                 <Route path="users" element={<UsersContainer/>}/>
 
