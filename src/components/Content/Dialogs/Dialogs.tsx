@@ -7,11 +7,11 @@ import {DialogsPropsType} from './DialogsContainer';
 
 
 
-export function Dialogs({addNewMessage, updateNewMessageText, dialogsData}: DialogsPropsType) {
+export function Dialogs({addMessage, changeNewMessageText, dialogsData}: DialogsPropsType) {
 
-    const addNewMessageHandler = () => addNewMessage()
+    const addNewMessageHandler = () => addMessage()
     const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        updateNewMessageText(e.currentTarget.value)
+        changeNewMessageText(e.currentTarget.value)
     }
 
     const mappedDialogs = dialogsData.dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url} status={el.status} path={el.path}/>);
