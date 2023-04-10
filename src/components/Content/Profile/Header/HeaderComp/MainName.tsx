@@ -2,7 +2,7 @@ import React from 'react';
 import s from '../Header.module.css';
 
 type PropsType = {
-    name: string
+    name: string | undefined
 }
 
 export function MainName({name}: PropsType) {

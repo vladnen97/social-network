@@ -7,22 +7,20 @@ import {InfoTag} from './HeaderComp/InfoTag';
 import {HeaderPropsType} from './HeaderContainer';
 
 
-export function Header({ header: {online, url, name, title, status, iconId}}: HeaderPropsType) {
+export function Header({ header }: HeaderPropsType) {
 
     return (
         <div className={s.header}>
             <div className={s.cover}></div>
             <div className={s.inner}>
-                <MainAvatar online={online} url={url}/>
+                <MainAvatar online={false} url={header?.photos.large}/>
                 <div className={s.info}>
 
-                    <MainName name={name}/>
-                    <MainStatus status={status}/>
+                    <MainName name={header?.fullName}/>
+                    <MainStatus status={header?.aboutMe}/>
 
                     <div className={s.fullInfo}>
-
-                        <InfoTag iconId={iconId} title={title}/>
-
+                        {/*<InfoTag iconId={iconId} title={title}/>*/}
                     </div>
                 </div>
             </div>
