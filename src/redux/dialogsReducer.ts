@@ -19,7 +19,7 @@ export type DialogsPageType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
 }
-export type DialogsPageActionsType = ReturnType<typeof addMessageActionCreator> | ReturnType<typeof changeNewMessageTextActionCreator>
+export type DialogsPageActionsType = ReturnType<typeof addMessage> | ReturnType<typeof changeNewMessageText>
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
@@ -119,7 +119,7 @@ function dialogsReducer(state: DialogsPageType = initialState, action: DialogsPa
 
 }
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE} as const)
-export const changeNewMessageTextActionCreator = (newText: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText} as const);
+export const addMessage = () => ({type: ADD_MESSAGE} as const)
+export const changeNewMessageText = (newText: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText} as const);
 
 export default dialogsReducer;
