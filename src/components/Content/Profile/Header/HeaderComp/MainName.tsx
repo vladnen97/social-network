@@ -7,6 +7,6 @@ type PropsType = {
 
 export function MainName({name}: PropsType) {
     return (
-        <h2 className={s.ownerName}>{name}</h2>
+        <h2 className={s.ownerName}>{name ? name : 'Name Surname'}</h2>
     );
 }
