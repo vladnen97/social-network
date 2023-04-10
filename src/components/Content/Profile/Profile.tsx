@@ -5,12 +5,9 @@ import {HeaderContainer} from './Header/HeaderContainer';
 
 export function Profile() {
 
-    return (
-        <div>
-
+    return <>
             <HeaderContainer/>
             <WallContainer/>
+        </>
 
-        </div>
-    );
 }
