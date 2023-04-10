@@ -43,17 +43,17 @@ function usersReducer(state: UsersPageType = initialState, action: UsersPageActi
                 ...state,
                 users: [...action.users]
             }
-        case 'SET-CURRENT-PAGE':
+        case SET_CURRENT_PAGE:
             return {
                 ...state,
                 currentPage: action.page
             }
-        case 'SET-TOTAL-USERS-COUNT':
+        case SET_TOTAL_USERS_COUNT:
             return {
                 ...state,
                 totalCount: action.count
             }
-        case 'SET-FETCHING':
+        case SET_FETCHING:
             return {
                 ...state,
                 isFetching: action.value
