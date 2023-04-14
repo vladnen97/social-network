@@ -9,9 +9,9 @@ import {
     UserType
 } from '../../../redux/usersReducer';
 import React from 'react';
-import axios from 'axios';
 import {Users} from './Users';
 import preloader from '../../../static/preloader.gif'
+import {getUsers} from '../../../api/api';
 
 type MapStateToPropsType = {
     users: Array<UserType>
@@ -30,16 +30,15 @@ type MapDispatchToPropsType = {
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
-
     componentDidMount() {
         this.props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=6&page=${this.props.currentPage}`, {withCredentials: true})
-            .then(res => {
-                this.props.setUsers(res.data.items)
-                this.props.setTotalUsersCount(res.data.totalCount)
+        getUsers(this.props.currentPage).then(data => {
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount)
                 this.props.setIsFetching(false)
             })
     }
+
     componentWillUnmount() {
         this.props.setCurrentPage(1)
     }
@@ -47,10 +46,9 @@ class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
     onPageChanged = (page: number) => {
         this.props.setCurrentPage(page)
         this.props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=6&page=${page}`, {withCredentials: true})
-            .then(res => {
+        getUsers(page).then(data => {
                 this.props.setIsFetching(false)
-                this.props.setUsers(res.data.items)
+                this.props.setUsers(data.items)
             })
     }
 
