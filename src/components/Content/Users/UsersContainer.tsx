@@ -40,6 +40,9 @@ class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
                 this.props.setIsFetching(false)
             })
     }
+    componentWillUnmount() {
+        this.props.setCurrentPage(1)
+    }
 
     onPageChanged = (page: number) => {
         this.props.setCurrentPage(page)

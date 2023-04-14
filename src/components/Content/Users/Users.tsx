@@ -50,7 +50,7 @@ export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCou
                         </div>
                     })}
             </div>
-            <div style={ {paddingTop: '40px', display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '21px', alignItems: 'baseline'} }>
+            <div style={ {paddingTop: '25px', display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '21px', alignItems: 'baseline'} }>
                 {
                     pages.map(el => <span key={el} style={props.currentPage === el ? {fontSize: '25px', fontWeight: 'bold', cursor: 'pointer'} : {cursor: 'pointer'}} onClick={() => props.setCurrentPage(el)}>{el}</span>).slice(0,10)
                 }
