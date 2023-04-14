@@ -1,5 +1,6 @@
 .header {
     display: flex;
+    align-items: center;
     grid-area: h;
     background-color: #fff;
     border-radius: 0 0 20px 20px;
@@ -8,4 +9,17 @@
 
 .logo svg {
     fill: #1d9dc9;
+}
+
+.title {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.name {
+    margin: 0;
+}
+
+.login {
+    font-size: 21px;
 }
