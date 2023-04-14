@@ -1,6 +1,7 @@
 import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 
 export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCount' | 'isFetching' | 'setIsFetching'>) => {
 
@@ -19,10 +20,26 @@ export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCou
                     props.users.map(el => {
 
                         const onFollowClickHandler = () => {
-                            props.follow(el.id)
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {
+                                withCredentials: true,
+                                headers: {
+                                    "API-KEY": "31f53cca-e0c7-46c1-88c3-71665c47f40c"
+                                }
+                            })
+                                .then((res)=> {
+                                    if (res.data.resultCode === 0) props.follow(el.id)
+                                })
                         }
                         const onUnFollowClickHandler = () => {
-                            props.unfollow(el.id)
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {
+                                withCredentials: true,
+                                headers: {
+                                    "API-KEY": "31f53cca-e0c7-46c1-88c3-71665c47f40c"
+                                }
+                            })
+                                .then((res)=> {
+                                    if (res.data.resultCode === 0) props.unfollow(el.id)
+                                })
                         }
 
                         return <div key={el.id} style={{
