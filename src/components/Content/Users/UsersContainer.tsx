@@ -33,7 +33,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
 
     componentDidMount() {
         this.props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=6&page=${this.props.currentPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=6&page=${this.props.currentPage}`, {withCredentials: true})
             .then(res => {
                 this.props.setUsers(res.data.items)
                 this.props.setTotalUsersCount(res.data.totalCount)
@@ -47,7 +47,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
     onPageChanged = (page: number) => {
         this.props.setCurrentPage(page)
         this.props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=6&page=${page}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=6&page=${page}`, {withCredentials: true})
             .then(res => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(res.data.items)
