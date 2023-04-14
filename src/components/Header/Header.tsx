@@ -8,11 +8,11 @@ export function Header({login}: {login: string | null}) {
         <header className={s.header}>
             <div className={s.logo}>
                 <SvgIcon id={'logo'}/>
+                <h1 style={{margin: '0'}}>SocialNetwork</h1>
             </div>
-            <h1 className={s.title}>SocialNetwork</h1>
             {
                 login
-                    ? <h2 className={s.name}>{login}</h2>
+                    ? <NavLink to={'/profile'}><h2 className={s.name}>{login}</h2> </NavLink>
                     : <NavLink to={'/login'} className={s.login}>Login</NavLink>
             }
         </header>
