@@ -2,6 +2,7 @@ import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 import {NavLink} from 'react-router-dom';
 import {setFollow, setUnFollow} from '../../../api/api';
+import {Button} from 'antd';
 
 export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCount' | 'isFetching' | 'setIsFetching'>) => {
 
@@ -20,13 +21,17 @@ export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCou
                     props.users.map(el => {
 
                         const onFollowClickHandler = () => {
+                            props.toggleFollowingProgress(true, el.id)
                             setFollow(el.id).then((data)=> {
-                                    if (data.resultCode === 0) props.follow(el.id)
+                                props.toggleFollowingProgress(false, el.id)
+                                if (data.resultCode === 0) props.follow(el.id)
                                 })
                         }
                         const onUnFollowClickHandler = () => {
+                            props.toggleFollowingProgress(true, el.id)
                             setUnFollow(el.id).then((data)=> {
-                                    if (data.resultCode === 0) props.unfollow(el.id)
+                                props.toggleFollowingProgress(false, el.id)
+                                if (data.resultCode === 0) props.unfollow(el.id)
                                 })
                         }
 
@@ -49,8 +54,16 @@ export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCou
                                 </div>
                             </div>
                             {el.followed
-                                ? <button onClick={onUnFollowClickHandler}>Unfollow</button>
-                                : <button onClick={onFollowClickHandler}>Follow</button>
+                                ? <Button size={'large'}
+                                          onClick={onUnFollowClickHandler}
+                                          disabled={props.followingInProgress.indexOf(el.id) !== -1}>
+                                    Unfollow
+                            </Button>
+                                : <Button size={'large'}
+                                          onClick={onFollowClickHandler}
+                                          disabled={props.followingInProgress.indexOf(el.id) !== -1}>
+                                    Follow
+                                </Button>
                             }
                         </div>
                     })}
