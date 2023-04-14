@@ -3,7 +3,6 @@ import {Profile} from './Profile';
 import {ProfilePageHeaderType, setUserProfile} from '../../../redux/profileReducer';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {RootStateType} from '../../../redux/redux-store';
 import {useParams} from 'react-router-dom';
 
 
@@ -11,13 +10,13 @@ type ProfileInnerContainerPropsType = {
     setUserProfile: (profile: ProfilePageHeaderType) => void
 }
 
-function ProfileInnerContainer(props: ProfileInnerContainerPropsType) {
+function ProfileInnerContainer({setUserProfile}: ProfileInnerContainerPropsType) {
     const location = useParams<{ userId: string }>()
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${location.userId ? location.userId : 28671}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${location.userId ? location.userId : 28429}`)
             .then(res => {
-                props.setUserProfile(res.data)
+                setUserProfile(res.data)
             })
     }, [location])
 
@@ -25,9 +24,4 @@ function ProfileInnerContainer(props: ProfileInnerContainerPropsType) {
     return <Profile/>
 }
 
-
-const mapStateToProps = (state: RootStateType) => {
-    return {}
-}
-
-export const ProfileContainer = connect(mapStateToProps, {setUserProfile})(ProfileInnerContainer)
+export const ProfileContainer = connect(null, {setUserProfile})(ProfileInnerContainer)
