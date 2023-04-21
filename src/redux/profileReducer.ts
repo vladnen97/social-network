@@ -1,4 +1,6 @@
 import {v1} from 'uuid';
+import {Dispatch} from 'redux';
+import {profileAPI} from '../api/api';
 
 
 export type PostType = {
@@ -27,20 +29,19 @@ export type ProfilePageHeaderType = {
     photos: { small: string | null, large: string | null }
     userId: number
 } | null
-export type ProfilePageType = {
-    postTextValue: string
-    header: ProfilePageHeaderType
-    posts: Array<PostType>
-}
-export type ProfilePageActionsType = ReturnType<typeof addPost> | ReturnType<typeof ChangeNewPostText> | ReturnType<typeof setUserProfile>
+export type ProfilePageType = typeof initialState
+
+export type ProfilePageActionsType = ReturnType<typeof addPost> | ReturnType<typeof ChangeNewPostText> | ReturnType<typeof setUserProfile> | ReturnType<typeof setIsFetching>
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
+const SET_LOADING = 'SET-LOADING'
 
-const initialState: ProfilePageType = {
+const initialState = {
+    isLoading: false,
     postTextValue: '',
-    header: null,
+    header: null as ProfilePageHeaderType,
     posts: [
         {
             id: v1(),
@@ -74,12 +75,10 @@ const initialState: ProfilePageType = {
             likes: 23,
             comments: 0
         },
-    ]
+    ] as Array<PostType>
 }
 
-
 function profileReducer(state: ProfilePageType = initialState, action: ProfilePageActionsType): ProfilePageType {
-
     switch (action.type) {
         case SET_USER_PROFILE:
             return {
@@ -105,14 +104,32 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
                 ...state,
                 postTextValue: action.newText
             }
+        case SET_LOADING:
+            return {
+                ...state,
+                isLoading: action.status
+            }
         default:
             return state;
     }
 
 }
 
+//action-creators
 export const addPost = () => ({type: ADD_POST} as const);
 export const ChangeNewPostText = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const);
 export const setUserProfile = (profile: ProfilePageHeaderType) => ({type: SET_USER_PROFILE, profile} as const)
+export const setIsFetching = (status: boolean) => ({type: SET_LOADING, status} as const)
+
+//thunk-creators
+export const getProfile = (userId: string | undefined) => (dispatch: Dispatch<ProfilePageActionsType>) => {
+    dispatch(setIsFetching(true))
+
+    profileAPI.getProfileData(userId).then(data => {
+        dispatch(setUserProfile(data))
+        dispatch(setIsFetching(false))
+
+    })
+}
 
 export default profileReducer;

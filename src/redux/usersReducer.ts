@@ -1,3 +1,5 @@
+import {Dispatch} from 'redux';
+import {usersAPI} from '../api/api';
 
 export type UserType = {
     id: number
@@ -6,6 +8,9 @@ export type UserType = {
     photos: {small: string | null, large: string | null}
     followed: boolean
 }
+export type UsersPageType = typeof initialState
+
+export type UsersPageActionType = ReturnType<typeof follow> | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching> | ReturnType<typeof toggleFollowingProgress>
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -15,6 +20,7 @@ const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 const SET_FETCHING = 'SET-FETCHING'
 const SET_FOLLOWING_PROGRESS = 'SET-FOLLOWING-PROGRESS'
 
+//init state
 const initialState = {
     users: [] as Array<UserType>,
     totalCount: 0,
@@ -23,11 +29,7 @@ const initialState = {
     followingInProgress: [] as number[]
 }
 
-
-export type UsersPageActionType = ReturnType<typeof follow> | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof setIsFetching> | ReturnType<typeof toggleFollowingProgress>
-export type UsersPageType = typeof initialState
-
-
+//reducer
 function usersReducer(state: UsersPageType = initialState, action: UsersPageActionType): UsersPageType {
     switch (action.type) {
         case FOLLOW:
@@ -72,7 +74,7 @@ function usersReducer(state: UsersPageType = initialState, action: UsersPageActi
     }
 }
 
-
+//acton-creators
 export const follow = (userId: number) => ({type: FOLLOW, userId } as const)
 export const unfollow = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsers = (users: Array<UserType>) => ({type : SET_USERS, users} as const)
@@ -80,5 +82,36 @@ export const setCurrentPage = (page: number) => ({type : SET_CURRENT_PAGE, page}
 export const setTotalUsersCount = (count: number) => ({type: SET_TOTAL_USERS_COUNT, count} as const)
 export const setIsFetching = (value: boolean) => ({type: SET_FETCHING, value} as const)
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({type: SET_FOLLOWING_PROGRESS, isFetching, userId} as const)
+
+//thunk-creators
+export const getUsers = (currentPage: number) => (dispatch: Dispatch) => {
+    dispatch(setIsFetching(true))
+    dispatch(setCurrentPage(currentPage))
+
+    usersAPI.getUsers(currentPage).then(data => {
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount))
+        dispatch(setIsFetching(false))
+    })
+
+}
+
+export const setFollow = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+
+    usersAPI.setFollow(userId).then((data)=> {
+        dispatch(toggleFollowingProgress(false, userId))
+        if (data.resultCode === 0) dispatch(follow(userId))
+    })
+}
+
+export const setUnFollow = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+
+    usersAPI.setUnFollow(userId).then((data)=> {
+        dispatch(toggleFollowingProgress(false, userId))
+        if (data.resultCode === 0) dispatch(unfollow(userId))
+    })
+}
 
 export default usersReducer;
