@@ -1,26 +1,35 @@
 import React, {useEffect} from 'react';
 import {Profile} from './Profile';
-import {ProfilePageHeaderType, setUserProfile} from '../../../redux/profileReducer';
+import {getProfile} from '../../../redux/profileReducer';
 import {connect} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import {getProfileData} from '../../../api/api';
+import {RootStateType} from '../../../redux/redux-store';
+import preloader from '../../../static/preloader.gif';
 
-
-type ProfileInnerContainerPropsType = {
-    setUserProfile: (profile: ProfilePageHeaderType) => void
+type MapStateToPropsType = {
+    isLoading: boolean
+}
+type ProfileInnerContainerPropsType = MapStateToPropsType & {
+    getProfile: (userId: string | undefined) => void
 }
 
-function ProfileInnerContainer({setUserProfile}: ProfileInnerContainerPropsType) {
+function ProfileInnerContainer({getProfile, isLoading}: ProfileInnerContainerPropsType) {
     const location = useParams<{ userId: string }>()
 
     useEffect(() => {
-        getProfileData(location.userId).then(data => {
-                setUserProfile(data)
-            })
+        getProfile(location.userId)
     }, [location])
 
 
-    return <Profile/>
+    return isLoading
+        ? <div style={{width: '150px', margin: 'auto', marginTop: '300px'}}><img src={preloader} alt="fetching"/></div>
+        : <Profile/>
+
+
 }
 
-export const ProfileContainer = connect(null, {setUserProfile})(ProfileInnerContainer)
+const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
+    return {isLoading: state.profilePage.isLoading}
+}
+
+export const ProfileContainer = connect(mapStateToProps, {getProfile})(ProfileInnerContainer)

@@ -1,10 +1,9 @@
 import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 import {NavLink} from 'react-router-dom';
-import {setFollow, setUnFollow} from '../../../api/api';
 import {Button} from 'antd';
 
-export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCount' | 'isFetching' | 'setIsFetching'>) => {
+export const Users = (props: Omit<UsersPropsType, 'isFetching' | 'getUsers'>) => {
 
     const pagesCount = Math.ceil(props.totalCount / 6)
     let pages = []
@@ -21,18 +20,10 @@ export const Users = (props: Omit<UsersPropsType, 'setUsers' | 'setTotalUsersCou
                     props.users.map(el => {
 
                         const onFollowClickHandler = () => {
-                            props.toggleFollowingProgress(true, el.id)
-                            setFollow(el.id).then((data)=> {
-                                props.toggleFollowingProgress(false, el.id)
-                                if (data.resultCode === 0) props.follow(el.id)
-                                })
+                            props.setFollow(el.id)
                         }
                         const onUnFollowClickHandler = () => {
-                            props.toggleFollowingProgress(true, el.id)
-                            setUnFollow(el.id).then((data)=> {
-                                props.toggleFollowingProgress(false, el.id)
-                                if (data.resultCode === 0) props.unfollow(el.id)
-                                })
+                            props.setUnFollow(el.id)
                         }
 
                         return <div key={el.id} style={{
