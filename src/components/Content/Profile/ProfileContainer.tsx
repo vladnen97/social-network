@@ -1,37 +1,36 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Profile} from './Profile';
-import {getProfile} from '../../../redux/profileReducer';
+import {getProfile, ProfilePageType} from '../../../redux/profileReducer';
 import {connect} from 'react-redux';
-import {useNavigate, useParams} from 'react-router-dom';
+import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
 import {RootStateType} from '../../../redux/redux-store';
 import preloader from '../../../static/preloader.gif';
 
+type PathParamsType = {
+    userId: string | undefined
+}
 type MapStateToPropsType = {
     isLoading: boolean
     isAuth: boolean
 }
-type ProfileInnerContainerPropsType = MapStateToPropsType & {
+type ProfileInnerContainerPropsType = RouteComponentProps<PathParamsType> & MapStateToPropsType & {
     getProfile: (userId: string | undefined) => void
 }
 
-function ProfileInnerContainer({getProfile, isLoading, isAuth}: ProfileInnerContainerPropsType) {
-    const location = useParams<{ userId: string }>()
-    const navigate = useNavigate()
+class ProfileInnerContainer extends React.Component<ProfileInnerContainerPropsType, ProfilePageType> {
 
-    useEffect(() => {
-        if (!isAuth) {
-            navigate('/login')
-        } else {
-            getProfile(location.userId)
-        }
-    }, [location, isAuth])
+    componentDidMount() {
+        const userId = this.props.match.params.userId
+        this.props.getProfile(userId)
+    }
 
 
-    return isLoading
-        ? <div style={{width: '150px', margin: 'auto', marginTop: '300px'}}><img src={preloader} alt="fetching"/></div>
-        : <Profile/>
-
-
+    render() {
+        if (!this.props.isAuth) return <Redirect to={'/login'}/>
+        return this.props.isLoading
+            ? <div style={{width: '150px', margin: 'auto', marginTop: '300px'}}><img src={preloader} alt="fetching"/></div>
+            : <Profile/>
+    }
 }
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
@@ -41,4 +40,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-export const ProfileContainer = connect(mapStateToProps, {getProfile})(ProfileInnerContainer)
+const WithUrlDataProfileContainer = withRouter(ProfileInnerContainer)
+
+export const ProfileContainer = connect(mapStateToProps, {getProfile})(WithUrlDataProfileContainer)

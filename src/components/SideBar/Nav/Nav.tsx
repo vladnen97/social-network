@@ -7,11 +7,11 @@ export function Nav() {
 
     return (
         <nav className={s.nav}>
-            <Item link={'profile'} title={'Profile'} logo={'user'}/>
-            <Item link={'dialogs'} title={'Messages'} logo={'chat'}/>
-            <Item link={'users'} title={'Users'} logo={'news'}/>
-            <Item link={'music'} title={'Music'} logo={'music'}/>
-            <Item link={'settings'} title={'Settings'} logo={'settings'}/>
+            <Item link={'/profile'} title={'Profile'} logo={'user'}/>
+            <Item link={'/dialogs'} title={'Messages'} logo={'chat'}/>
+            <Item link={'/users'} title={'Users'} logo={'news'}/>
+            <Item link={'/music'} title={'Music'} logo={'music'}/>
+            <Item link={'/settings'} title={'Settings'} logo={'settings'}/>
         </nav>
     );
 }

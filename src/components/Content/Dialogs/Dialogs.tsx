@@ -1,19 +1,13 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
 import {Divider} from 'antd';
 import {DialogsPropsType} from './DialogsContainer';
-import {useNavigate} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 
 export function Dialogs({addMessage, changeNewMessageText, dialogsData, isAuth}: DialogsPropsType) {
-    const location = useNavigate()
-
-    useEffect(() => {
-        if (!isAuth) location('/login')
-
-    }, [isAuth])
 
     const addNewMessageHandler = () => addMessage()
     const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -25,6 +19,7 @@ export function Dialogs({addMessage, changeNewMessageText, dialogsData, isAuth}:
     const mappedMessages = dialogsData.messages.map(el => <Message key={el.id} url={el.url} text={el.text}
                                                                    status={el.status}/>);
 
+    if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.content}>
@@ -35,7 +30,7 @@ export function Dialogs({addMessage, changeNewMessageText, dialogsData, isAuth}:
 
                 <Divider className={s.divider}/>
 
-                <div className={s.sendMessage}> {/*доработать*/}
+                <div className={s.sendMessage}>
                     <textarea className={s.textArea}
                               placeholder={'Write a message...'}
                               value={dialogsData.newMessageText}

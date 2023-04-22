@@ -8,7 +8,7 @@ type PropsType = Omit<DialogType, 'id'>
 
 export function Dialog({url, name, status, path}: PropsType) {
     return (
-        <NavLink className={({isActive}) => isActive ? `${s.dialog} ${s.active}` : s.dialog } to={path}>
+        <NavLink className={s.dialog} activeClassName={s.active} to={path}>
             <CardUser size={56} url={url} name={name} status={status}/>
         </NavLink>
     );

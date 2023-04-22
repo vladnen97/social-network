@@ -2,8 +2,8 @@ import React from 'react';
 
 export const Login = () => {
     return (
-        <div>
-
+        <div style={{textAlign: 'center', fontSize: '21px'}}>
+            Login
         </div>
     );
 };
