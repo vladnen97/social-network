@@ -19,6 +19,8 @@ export function Content() {
                 <Route path="users" element={<UsersContainer/>}/>
 
                 <Route path="music" element={<div style={{textAlign: 'center', fontSize: '21px'}}>Music</div>}/>
+                <Route path="login" element={<div style={{textAlign: 'center', fontSize: '21px'}}>Login</div>}/>
+
                 <Route path={'*'} element={<h1 style={{textAlign: 'center'}}>404:PAGE NOT FOUND</h1>}/>
             </Routes>
         </div>
