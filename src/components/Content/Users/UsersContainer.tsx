@@ -51,13 +51,13 @@ class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
     }
 }
 
-const mapStateToProps = ({usersPage}: RootStateType): MapStateToPropsType => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
-        users: usersPage.users,
-        isFetching: usersPage.isFetching,
-        totalCount: usersPage.totalCount,
-        currentPage: usersPage.currentPage,
-        followingInProgress: usersPage.followingInProgress,
+        users: state.usersPage.users,
+        isFetching: state.usersPage.isFetching,
+        totalCount: state.usersPage.totalCount,
+        currentPage: state.usersPage.currentPage,
+        followingInProgress: state.usersPage.followingInProgress,
     }
 }
 
