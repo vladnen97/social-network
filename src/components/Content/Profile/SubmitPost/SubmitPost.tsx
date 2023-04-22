@@ -25,7 +25,7 @@ export function SubmitPost({postTextValue, updateNewPostText, addPost}: PropsTyp
                       rows={3}
                       value={postTextValue}
                       onChange={onChangeTextHandler}/>
-            <Button size={'large'} onClick={addPostHandler}> Post </Button>
+            <Button size={'large'} onClick={addPostHandler} shape={'round'}> Post </Button>
         </div>
     );
 }

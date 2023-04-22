@@ -47,12 +47,14 @@ export const Users = (props: Omit<UsersPropsType, 'isFetching' | 'getUsers'>) =>
                             {el.followed
                                 ? <Button size={'large'}
                                           onClick={onUnFollowClickHandler}
-                                          disabled={props.followingInProgress.indexOf(el.id) !== -1}>
+                                          loading={props.followingInProgress.indexOf(el.id) !== -1}
+                                shape={'round'}>
                                     Unfollow
                             </Button>
                                 : <Button size={'large'}
                                           onClick={onFollowClickHandler}
-                                          disabled={props.followingInProgress.indexOf(el.id) !== -1}>
+                                          loading={props.followingInProgress.indexOf(el.id) !== -1}
+                                          shape={'round'}>
                                     Follow
                                 </Button>
                             }
