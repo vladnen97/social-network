@@ -20,7 +20,10 @@ type ProfileInnerContainerPropsType = RouteComponentProps<PathParamsType> & MapS
 class ProfileInnerContainer extends React.Component<ProfileInnerContainerPropsType, ProfilePageType> {
 
     componentDidMount() {
-        const userId = this.props.match.params.userId
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = '28429'
+        }
         this.props.getProfile(userId)
     }
 
