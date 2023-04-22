@@ -1,21 +1,29 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
 import {Divider} from 'antd';
 import {DialogsPropsType} from './DialogsContainer';
+import {useNavigate} from 'react-router-dom';
 
 
+export function Dialogs({addMessage, changeNewMessageText, dialogsData, isAuth}: DialogsPropsType) {
+    const location = useNavigate()
 
-export function Dialogs({addMessage, changeNewMessageText, dialogsData}: DialogsPropsType) {
+    useEffect(() => {
+        if (!isAuth) location('/login')
+
+    }, [isAuth])
 
     const addNewMessageHandler = () => addMessage()
     const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         changeNewMessageText(e.currentTarget.value)
     }
 
-    const mappedDialogs = dialogsData.dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url} status={el.status} path={el.path}/>);
-    const mappedMessages = dialogsData.messages.map(el => <Message key={el.id} url={el.url} text={el.text} status={el.status}/>);
+    const mappedDialogs = dialogsData.dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url}
+                                                                status={el.status} path={el.path}/>);
+    const mappedMessages = dialogsData.messages.map(el => <Message key={el.id} url={el.url} text={el.text}
+                                                                   status={el.status}/>);
 
 
     return (
@@ -33,7 +41,7 @@ export function Dialogs({addMessage, changeNewMessageText, dialogsData}: Dialogs
                               value={dialogsData.newMessageText}
                               onChange={updateNewMessageTextHandler}
                     />
-                    <button onClick={addNewMessageHandler} className={s.sendButton}> send </button>
+                    <button onClick={addNewMessageHandler} className={s.sendButton}> send</button>
                 </div>
             </div>
 

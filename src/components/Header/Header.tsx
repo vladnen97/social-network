@@ -3,7 +3,12 @@ import s from './Header.module.css';
 import {SvgIcon} from '../SideBar/SvgIcon';
 import {NavLink} from 'react-router-dom';
 
-export function Header({login}: {login: string | null}) {
+type PropsType = {
+    login: string | null
+    isAuth: boolean
+}
+
+export function Header({login, isAuth}: PropsType) {
     return (
         <header className={s.header}>
             <div className={s.logo}>
@@ -11,7 +16,7 @@ export function Header({login}: {login: string | null}) {
                 <h1 style={{margin: '0'}}>SocialNetwork</h1>
             </div>
             {
-                login
+                isAuth
                     ? <NavLink to={'/profile'}><h2 className={s.name}>{login}</h2> </NavLink>
                     : <NavLink to={'/login'} className={s.login}>Login</NavLink>
             }
