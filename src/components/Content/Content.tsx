@@ -1,6 +1,6 @@
 import React from 'react';
 import c from './Content.module.css';
-import {Redirect, Route} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 import {UsersContainer} from './Users/UsersContainer';
 import {ProfileContainer} from './Profile/ProfileContainer';
@@ -10,15 +10,19 @@ import {Login} from './Login/Login';
 export function Content() {
     return (
         <div className={c.content}>
-            <Route path="/" render={() => <Redirect to={'profile'}/>}/>
+            <Switch>
+                <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
 
-            <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+                <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                <Route path="/users" render={() => <UsersContainer/>}/>
 
-            <Route path="/dialogs" render={() => <DialogsContainer/>}/>
-            <Route path="/users" render={() => <UsersContainer/>}/>
+                <Route path="/music" render={() => <div style={{textAlign: 'center', fontSize: '21px'}}>Music</div>}/>
+                <Route path="/login" render={() => <Login/>}/>
 
-            <Route path="/music" render={() => <div style={{textAlign: 'center', fontSize: '21px'}}>Music</div>}/>
-            <Route path="/login" render={() => <Login/>}/>
+                <Route path="/" exact render={() => <Redirect to={'/profile'}/>}/>
+
+                <Route render={() => <h1 style={{textAlign: 'center'}}>404:PAGE NOT FOUND</h1>}/>
+            </Switch>
         </div>
     );
 }
