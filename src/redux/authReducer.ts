@@ -4,7 +4,11 @@ import {authAPI} from '../api/api';
 export type InitStateType = typeof initState
 type ActionsType = ReturnType<typeof setAuthUserData>
 
-const SET_USER_DATA = 'SET-USER-DATA'
+enum AuthActionTypes {
+    SET_USER_DATA = 'SET-USER-DATA',
+
+}
+
 
 const initState = {
     id: null as number | null,
@@ -16,7 +20,7 @@ const initState = {
 
 export const authReducer = (state: InitStateType = initState, action: ActionsType): InitStateType => {
     switch (action.type) {
-        case SET_USER_DATA:
+        case AuthActionTypes.SET_USER_DATA:
             return {
                 ...state,
                 ...action.data,
@@ -27,7 +31,7 @@ export const authReducer = (state: InitStateType = initState, action: ActionsTyp
     }
 }
 
-export const  setAuthUserData= (data: InitStateType) => ({type: SET_USER_DATA, data} as const)
+export const  setAuthUserData= (data: InitStateType) => ({type: AuthActionTypes.SET_USER_DATA, data} as const)
 
 export const getAuthData = () => (dispatch: Dispatch) => {
     authAPI.getAuthData().then((data) => {
