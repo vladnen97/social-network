@@ -21,9 +21,12 @@ export type DialogsPageType = {
 }
 export type DialogsPageActionsType = ReturnType<typeof addMessage> | ReturnType<typeof changeNewMessageText>
 
+enum DialogsActionTypes {
+    ADD_MESSAGE = 'ADD-MESSAGE',
+    UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT',
+}
 
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+
 const initialState: DialogsPageType = {
     newMessageText: '',
     messages: [
@@ -94,7 +97,7 @@ const initialState: DialogsPageType = {
 function dialogsReducer(state: DialogsPageType = initialState, action: DialogsPageActionsType): DialogsPageType {
 
     switch (action.type) {
-        case ADD_MESSAGE:
+        case DialogsActionTypes.ADD_MESSAGE:
             const newMessage: MessageType = {
                 id: v1(),
                 text: state.newMessageText,
@@ -107,7 +110,7 @@ function dialogsReducer(state: DialogsPageType = initialState, action: DialogsPa
                 messages: [...state.messages, newMessage]
             }
 
-        case UPDATE_NEW_MESSAGE_TEXT:
+        case DialogsActionTypes.UPDATE_NEW_MESSAGE_TEXT:
             return {
                 ...state,
                 newMessageText: action.newText
@@ -119,7 +122,7 @@ function dialogsReducer(state: DialogsPageType = initialState, action: DialogsPa
 
 }
 
-export const addMessage = () => ({type: ADD_MESSAGE} as const)
-export const changeNewMessageText = (newText: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: newText} as const);
+export const addMessage = () => ({type: DialogsActionTypes.ADD_MESSAGE} as const)
+export const changeNewMessageText = (newText: string) => ({type: DialogsActionTypes.UPDATE_NEW_MESSAGE_TEXT, newText: newText} as const);
 
 export default dialogsReducer;
