@@ -31,12 +31,19 @@ export type ProfilePageHeaderType = {
 } | null
 export type ProfilePageType = typeof initialState
 
-export type ProfilePageActionsType = ReturnType<typeof addPost> | ReturnType<typeof ChangeNewPostText> | ReturnType<typeof setUserProfile> | ReturnType<typeof setIsFetching>
+export type ProfilePageActionsType =
+    ReturnType<typeof addPost>
+    | ReturnType<typeof ChangeNewPostText>
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setIsFetching>
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
-const SET_LOADING = 'SET-LOADING'
+enum ProfileActionTypes {
+    ADD_POST = 'ADD-POST',
+    UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT',
+    SET_USER_PROFILE = 'SET-USER-PROFILE',
+    SET_LOADING = 'SET-LOADING',
+}
+
 
 const initialState = {
     isLoading: false,
@@ -80,12 +87,12 @@ const initialState = {
 
 function profileReducer(state: ProfilePageType = initialState, action: ProfilePageActionsType): ProfilePageType {
     switch (action.type) {
-        case SET_USER_PROFILE:
+        case ProfileActionTypes.SET_USER_PROFILE:
             return {
                 ...state,
                 header: action.profile
             }
-        case ADD_POST:
+        case ProfileActionTypes.ADD_POST:
             const newPost: PostType = {
                 id: v1(),
                 name: 'Name Surname',
@@ -99,12 +106,12 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
                 postTextValue: '',
                 posts: [newPost, ...state.posts]
             }
-        case UPDATE_NEW_POST_TEXT:
+        case ProfileActionTypes.UPDATE_NEW_POST_TEXT:
             return {
                 ...state,
                 postTextValue: action.newText
             }
-        case SET_LOADING:
+        case ProfileActionTypes.SET_LOADING:
             return {
                 ...state,
                 isLoading: action.status
@@ -116,10 +123,10 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
 }
 
 //action-creators
-export const addPost = () => ({type: ADD_POST} as const);
-export const ChangeNewPostText = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText: newText} as const);
-export const setUserProfile = (profile: ProfilePageHeaderType) => ({type: SET_USER_PROFILE, profile} as const)
-export const setIsFetching = (status: boolean) => ({type: SET_LOADING, status} as const)
+export const addPost = () => ({type: ProfileActionTypes.ADD_POST} as const);
+export const ChangeNewPostText = (newText: string) => ({type: ProfileActionTypes.UPDATE_NEW_POST_TEXT, newText: newText} as const);
+export const setUserProfile = (profile: ProfilePageHeaderType) => ({type: ProfileActionTypes.SET_USER_PROFILE, profile} as const)
+export const setIsFetching = (status: boolean) => ({type: ProfileActionTypes.SET_LOADING, status} as const)
 
 //thunk-creators
 export const getProfile = (userId: string | undefined) => (dispatch: Dispatch<ProfilePageActionsType>) => {
