@@ -14,7 +14,7 @@ export function Content() {
             <Switch>
                 <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
 
-                <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                <Route path="/dialogs/:userId?" render={() => <DialogsContainer/>}/>
                 <Route path="/users" render={() => <UsersContainer/>}/>
 
                 <Route path="/music" render={() => <div style={{textAlign: 'center', fontSize: '21px'}}>Music</div>}/>
