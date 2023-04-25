@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getAuthData, InitStateType} from '../../redux/authReducer';
+import {getAuthData} from '../../redux/authReducer';
 import {Header} from './Header';
 import {RootStateType} from '../../redux/redux-store';
 
@@ -12,7 +12,7 @@ type HeaderContainerType = MapStateToPropsType & {
     getAuthData: () => void
 }
 
-class HeaderContainer extends React.Component<HeaderContainerType, InitStateType> {
+class HeaderContainer extends React.Component<HeaderContainerType, {}> {
     componentDidMount() {
         this.props.getAuthData()
     }
