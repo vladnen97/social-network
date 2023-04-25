@@ -4,8 +4,8 @@
             "m d";
     grid-template-columns: 8fr 4fr;
     grid-gap: 16px;
-    height: 92vh;
-    max-height: 92vh;
+    height: 90vh;
+    max-height: 90vh;
 }
 
 /*chat*/
@@ -36,34 +36,8 @@
 .sendMessage {
     padding: 8px 24px 16px 24px;
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
-}
-
-.textArea {
-    width: 100%;
-    max-width: 420px;
-
-    height: 42px;
-    max-height: 150px;
-
-    font-size: 14px;
-    border: 1px solid rgb(0, 0, 0, 0.2);
-    border-radius: 18px;
-    padding: 8px 14px;
-
-    outline: none;
-    resize: none;
-    appearance: none;
-}
-
-.sendButton {
-    color: #fff;
-    background-color: #126eca;
-    width: 120px;
-    height: 42px;
-    border: none;
-    border-radius: 18px;
+    gap: 20px;
 }
 
 
