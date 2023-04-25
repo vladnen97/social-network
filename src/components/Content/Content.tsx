@@ -3,7 +3,7 @@ import c from './Content.module.css';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 import {UsersContainer} from './Users/UsersContainer';
-import {ProfileContainer} from './Profile/ProfileContainer';
+import ProfileContainer from './Profile/ProfileContainer';
 import {Login} from './Login/Login';
 
 
