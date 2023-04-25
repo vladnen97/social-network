@@ -67,28 +67,28 @@ const initialState: DialogsPageType = {
             name: 'Misha Kuznetsov',
             url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zsO-WB5sqXt2_4XGhgNqeecBwQ2dm2dTFcV4NBR0hBIK9nlKRuIz8HUwEo-eEteJBm4&usqp=CAU',
             status: 'here will be last message',
-            path: '1'
+            path: '/dialogs/1'
         },
         {
             id: v1(),
             name: 'Dasha Bukina',
             url: 'https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg',
             status: 'here will be last message',
-            path: '2'
+            path: '/dialogs/2'
         },
         {
             id: v1(),
             name: 'Dima Sokolov',
             url: 'https://www.shutterstock.com/image-photo/headshot-portrait-smiling-african-american-260nw-1443249407.jpg',
             status: 'here will be last message',
-            path: '3'
+            path: '/dialogs/3'
         },
         {
             id: v1(),
             name: 'ELena Golovach',
             url: 'https://media.istockphoto.com/id/1381221247/photo/beautiful-afro-girl-with-curly-hairstyle.jpg?b=1&s=170667a&w=0&k=20&c=0x91osZOkL8EfhTEEGNa2EeCGN2gdMTNULOsUFW_0i4=',
             status: 'here will be last message',
-            path: '4'
+            path: '/dialogs/4'
         },
     ],
 }
