@@ -1,7 +1,7 @@
 import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 import {NavLink} from 'react-router-dom';
-import {Button} from 'antd';
+import {Button, Pagination} from 'antd';
 
 export const Users = (props: Omit<UsersPropsType, 'isFetching' | 'getUsers'>) => {
 
@@ -61,10 +61,18 @@ export const Users = (props: Omit<UsersPropsType, 'isFetching' | 'getUsers'>) =>
                         </div>
                     })}
             </div>
-            <div style={ {paddingTop: '25px', display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '21px', alignItems: 'baseline'} }>
-                {
-                    pages.map(el => <span key={el} style={props.currentPage === el ? {fontSize: '25px', fontWeight: 'bold', cursor: 'pointer'} : {cursor: 'pointer'}} onClick={() => props.setCurrentPage(el)}>{el}</span>).slice(0,10)
-                }
+
+            <div style={ {paddingTop: '35px', display: 'flex', justifyContent: 'center', gap: '14px', fontSize: '21px', alignItems: 'baseline'} }>
+                <Pagination
+                    size={'default'}
+                    total={props.totalCount}
+                    showTotal={(total) => `Total ${total} items`}
+                    defaultPageSize={6}
+                    showTitle={false}
+                    current={props.currentPage}
+                    onChange={(page) => props.setCurrentPage(page)}
+                    showSizeChanger={false}
+                />
             </div>
         </>
     );
