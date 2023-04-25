@@ -4,3 +4,12 @@
     height: 778px;
     gap: 16px;
 }
+
+.pagination {
+    padding-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    font-size: 21px;
+    align-items: baseline;
+}
