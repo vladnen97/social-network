@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import s from './SubmitPost.module.css'
-import {Button} from 'antd';
+import {Button, Input} from 'antd';
 
 
 type PropsType = {
@@ -8,6 +8,8 @@ type PropsType = {
     updateNewPostText: (value: string) => void
     addPost: () => void
 }
+
+const {TextArea} = Input
 
 export function SubmitPost({postTextValue, updateNewPostText, addPost}: PropsType) {
 
@@ -20,11 +22,11 @@ export function SubmitPost({postTextValue, updateNewPostText, addPost}: PropsTyp
 
     return (
         <div className={s.submitPost}>
-            <textarea placeholder={'Whats new?'}
-                      cols={50}
-                      rows={3}
-                      value={postTextValue}
-                      onChange={onChangeTextHandler}/>
+            <TextArea size={'large'}
+                      autoSize={{ minRows: 2, maxRows: 8 }}
+                      placeholder={'Write a message...'}
+                      value = {postTextValue}
+                      onChange = {onChangeTextHandler}/>
             <Button size={'large'} onClick={addPostHandler} shape={'round'}> Post </Button>
         </div>
     );

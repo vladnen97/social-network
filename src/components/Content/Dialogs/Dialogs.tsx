@@ -2,16 +2,17 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
-import {Divider} from 'antd';
+import {Button, Divider, Input} from 'antd';
 import {DialogsPropsType} from './DialogsContainer';
 
+const {TextArea} = Input
 
 export function Dialogs({addMessage, changeNewMessageText, dialogsData}: DialogsPropsType) {
 
     const addNewMessageHandler = () => addMessage()
-    const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        changeNewMessageText(e.currentTarget.value)
-    }
+    const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => changeNewMessageText(e.currentTarget.value)
+
+
 
     const mappedDialogs = dialogsData.dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url}
                                                                 status={el.status} path={el.path}/>);
@@ -28,12 +29,13 @@ export function Dialogs({addMessage, changeNewMessageText, dialogsData}: Dialogs
                 <Divider className={s.divider}/>
 
                 <div className={s.sendMessage}>
-                    <textarea className={s.textArea}
+                    <TextArea size={'large'}
+                              style={{borderRadius: '20px'}}
+                              autoSize={{ minRows: 1, maxRows: 6 }}
                               placeholder={'Write a message...'}
-                              value={dialogsData.newMessageText}
-                              onChange={updateNewMessageTextHandler}
-                    />
-                    <button onClick={addNewMessageHandler} className={s.sendButton}> send</button>
+                              value = {dialogsData.newMessageText}
+                              onChange = {updateNewMessageTextHandler}/>
+                    <Button onClick={addNewMessageHandler} shape={'round'} size={'large'} type={'primary'}> send </Button>
                 </div>
             </div>
 
