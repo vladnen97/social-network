@@ -5,6 +5,7 @@ import {DialogsContainer} from './Dialogs/DialogsContainer';
 import {UsersContainer} from './Users/UsersContainer';
 import ProfileContainer from './Profile/ProfileContainer';
 import {Login} from './Login/Login';
+import {Empty} from 'antd';
 
 
 export function Content() {
@@ -21,7 +22,7 @@ export function Content() {
 
                 <Route path="/" exact render={() => <Redirect to={'/profile'}/>}/>
 
-                <Route render={() => <h1 style={{textAlign: 'center'}}>404:PAGE NOT FOUND</h1>}/>
+                <Route render={() => <Empty imageStyle={{height: 200}} description={<h1>404:PAGE NOT FOUND</h1>}/>}/>
             </Switch>
         </div>
     );
