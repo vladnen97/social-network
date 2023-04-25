@@ -4,10 +4,9 @@ import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
 import {Divider} from 'antd';
 import {DialogsPropsType} from './DialogsContainer';
-import {Redirect} from 'react-router-dom';
 
 
-export function Dialogs({addMessage, changeNewMessageText, dialogsData, isAuth}: DialogsPropsType) {
+export function Dialogs({addMessage, changeNewMessageText, dialogsData}: DialogsPropsType) {
 
     const addNewMessageHandler = () => addMessage()
     const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,8 +17,6 @@ export function Dialogs({addMessage, changeNewMessageText, dialogsData, isAuth}:
                                                                 status={el.status} path={el.path}/>);
     const mappedMessages = dialogsData.messages.map(el => <Message key={el.id} url={el.url} text={el.text}
                                                                    status={el.status}/>);
-
-    if (!isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.content}>
