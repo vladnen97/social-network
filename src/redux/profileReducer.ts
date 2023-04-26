@@ -1,6 +1,6 @@
 import {v1} from 'uuid';
-import {Dispatch} from 'redux';
 import {profileAPI} from '../api/api';
+import {AppThunk} from './redux-store';
 
 
 export type PostType = {
@@ -129,7 +129,7 @@ export const setUserProfile = (profile: ProfilePageHeaderType) => ({type: Profil
 export const setIsFetching = (status: boolean) => ({type: ProfileActionTypes.SET_LOADING, status} as const)
 
 //thunk-creators
-export const getProfile = (userId: string | undefined) => (dispatch: Dispatch<ProfilePageActionsType>) => {
+export const getProfile = (userId: string | undefined): AppThunk => (dispatch) => {
     dispatch(setIsFetching(true))
 
     profileAPI.getProfileData(userId).then(data => {
