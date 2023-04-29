@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ComponentType} from 'react';
 import {Profile} from './Profile';
 import {getProfile} from '../../../redux/profileReducer';
 import {connect} from 'react-redux';
@@ -42,4 +42,4 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-export default compose(connect(mapStateToProps, {getProfile}),withRouter, withAuthRedirect)(ProfileInnerContainer)
+export default compose<ComponentType>(connect(mapStateToProps, {getProfile}),withRouter, withAuthRedirect)(ProfileInnerContainer)

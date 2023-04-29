@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {RootStateType} from '../../../redux/redux-store';
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect';
 import {compose} from 'redux';
+import {ComponentType} from 'react';
 
 
 type MapStateToPropsType = {
@@ -21,7 +22,7 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-export default compose(connect(mapStateToProps, {
+export default compose<ComponentType>(connect(mapStateToProps, {
     addMessage,
     changeNewMessageText,
 }), withAuthRedirect)(Dialogs)
