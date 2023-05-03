@@ -3,7 +3,6 @@ import s from './Header.module.css'
 import {MainAvatar} from './HeaderComp/MainAvatar';
 import {MainName} from './HeaderComp/MainName';
 import {MainStatus} from './HeaderComp/MainStatus';
-import {InfoTag} from './HeaderComp/InfoTag';
 import {HeaderPropsType} from './HeaderContainer';
 
 
