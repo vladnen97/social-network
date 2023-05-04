@@ -40,7 +40,7 @@ export class MainStatus extends React.Component<PropsType, StateType> {
         return <div className={s.status}>
             {!this.state.editMode
                 ? <span className={s.statusText}
-                        onDoubleClick={this.activateEditMode}>{this.props.status ? this.props.status : 'status...'}</span>
+                        onDoubleClick={this.activateEditMode}>{this.props.status || 'no status :('}</span>
                 : <TextArea size={'middle'}
                             autoSize={{minRows: 1, maxRows: 3}}
                             placeholder={'Tell us something...'}

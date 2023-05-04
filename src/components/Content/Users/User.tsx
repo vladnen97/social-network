@@ -26,7 +26,7 @@ export const User = (props: UserPropsType) => {
                         <Title level={4} style={{margin: '0'}}>{props.name}</Title>
                     </NavLink>
                     <Text type={'secondary'} style={{fontSize: '1rem'}}>
-                        {props.status || 'status...'}
+                        {props.status || 'no status :('}
                     </Text>
                 </div>
             </div>
