@@ -26,28 +26,33 @@ type GetAuthDataType = {
     messages: Array<string>
     resultCode: number
 }
+type UpdateStatusType = {
+    data: {}
+    messages: Array<string>
+    resultCode: number
+}
 
 export const usersAPI = {
     getUsers(page: number) {
         return instance.get<GetUsersType>(`users?count=12&page=${page}`).then((res) => res.data)
     },
     setFollow(userId: number) {
-        return instance.post<SetFollowUnfollowType>(`follow/${userId}`, {}).then((res) => {
-            console.log(res.data)
-            return res.data
-        })
+        return instance.post<SetFollowUnfollowType>(`follow/${userId}`, {}).then((res) => res.data)
     },
     setUnFollow(userId: number) {
-        return instance.delete<SetFollowUnfollowType>(`follow/${userId}`).then((res) => {
-            console.log(res.data)
-            return res.data
-        })
+        return instance.delete<SetFollowUnfollowType>(`follow/${userId}`).then((res) => res.data)
     },
 }
 
 export const profileAPI = {
-    getProfileData(userId: string | undefined) {
-        return instance.get<GetProfileDataType>(`profile/${userId ? userId : 28429}`).then((res) => res.data)
+    getProfileData(userId: string) {
+        return instance.get<GetProfileDataType>(`profile/${userId}`).then((res) => res.data)
+    },
+    getProfileStatus(userId: string) {
+        return instance.get<string>(`profile/status/${userId}`).then(res => res.data)
+    },
+    updateProfileStatus(status: string) {
+        return instance.put<UpdateStatusType>(`profile/status`, {status}).then(res => res.data)
     }
 }
 
