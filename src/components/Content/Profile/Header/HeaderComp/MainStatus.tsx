@@ -19,13 +19,18 @@ export class MainStatus extends React.Component<PropsType, StateType> {
         status: this.props.status
     }
 
+    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<StateType>) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({status: this.props.status})
+        }
+    }
+
     activateEditMode = (): void => {
         this.setState({editMode: true})
     }
     deactivateEditMode = (): void => {
         this.setState({editMode: false})
-        this.setState({status: this.state.status.trim()})
-        this.props.updateStatus(this.state.status.trim())
+        this.setState({status: this.props.status})
     }
     onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>): void => {
         this.setState({status: e.currentTarget.value})
@@ -33,6 +38,7 @@ export class MainStatus extends React.Component<PropsType, StateType> {
     onEnterPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>): void => {
         if (e.key === 'Enter') {
             this.deactivateEditMode()
+            this.props.updateStatus(this.state.status.trim())
         }
     }
 
