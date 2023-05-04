@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from '../Header.module.css';
 import {Input} from 'antd';
 
 type PropsType = {
-    status: string | undefined
+    status: string
+    updateStatus: (status: string) => void
+}
+type StateType = {
+    editMode: boolean;
+    status: string
 }
 
 const {TextArea} = Input
 
-export class MainStatus extends React.Component<PropsType, { editMode: boolean }> {
+export class MainStatus extends React.Component<PropsType, StateType> {
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
 
     activateEditMode = (): void => {
@@ -18,6 +24,16 @@ export class MainStatus extends React.Component<PropsType, { editMode: boolean }
     }
     deactivateEditMode = (): void => {
         this.setState({editMode: false})
+        this.setState({status: this.state.status.trim()})
+        this.props.updateStatus(this.state.status.trim())
+    }
+    onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+        this.setState({status: e.currentTarget.value})
+    }
+    onEnterPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>): void => {
+        if (e.key === 'Enter') {
+            this.deactivateEditMode()
+        }
     }
 
     render() {
@@ -28,10 +44,12 @@ export class MainStatus extends React.Component<PropsType, { editMode: boolean }
                 : <TextArea size={'middle'}
                             autoSize={{minRows: 1, maxRows: 3}}
                             placeholder={'Tell us something...'}
-                            onBlur={this.deactivateEditMode}
                             maxLength={230}
                             autoFocus
-                            value={this.props.status}/>
+                            value={this.state.status}
+                            onChange={this.onChangeHandler}
+                            onBlur={this.deactivateEditMode}
+                            onKeyDown={this.onEnterPressHandler}/>
             }
         </div>
     }
