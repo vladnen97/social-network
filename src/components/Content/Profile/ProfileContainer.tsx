@@ -1,6 +1,6 @@
 import React, {ComponentType} from 'react';
 import {Profile} from './Profile';
-import {getProfile} from '../../../redux/profileReducer';
+import {getProfile, getStatus} from '../../../redux/profileReducer';
 import {connect} from 'react-redux';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {RootStateType} from '../../../redux/redux-store';
@@ -15,7 +15,8 @@ type MapStateToPropsType = {
     isLoading: boolean
 }
 type ProfileInnerContainerPropsType = RouteComponentProps<PathParamsType> & MapStateToPropsType & {
-    getProfile: (userId: string | undefined) => void
+    getProfile: (userId: string) => void
+    getStatus: (userId: string) => void
 }
 
 class ProfileInnerContainer extends React.Component<ProfileInnerContainerPropsType, {}> {
@@ -26,6 +27,7 @@ class ProfileInnerContainer extends React.Component<ProfileInnerContainerPropsTy
             userId = '28429'
         }
         this.props.getProfile(userId)
+        this.props.getStatus(userId)
     }
 
 
@@ -42,4 +44,4 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     }
 }
 
-export default compose<ComponentType>(connect(mapStateToProps, {getProfile}),withRouter, withAuthRedirect)(ProfileInnerContainer)
+export default compose<ComponentType>(connect(mapStateToProps, {getProfile, getStatus}),withRouter, withAuthRedirect)(ProfileInnerContainer)
