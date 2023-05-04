@@ -6,7 +6,7 @@ import {MainStatus} from './HeaderComp/MainStatus';
 import {HeaderPropsType} from './HeaderContainer';
 
 
-export function Header({ header }: HeaderPropsType) {
+export function Header({ header, status, updateStatus }: HeaderPropsType) {
 
     return (
         <div className={s.header}>
@@ -16,7 +16,7 @@ export function Header({ header }: HeaderPropsType) {
                 <div className={s.info}>
 
                     <MainName name={header?.fullName}/>
-                    <MainStatus status={header?.aboutMe}/>
+                    <MainStatus status={status} updateStatus={updateStatus}/>
 
                     <div className={s.fullInfo}>
                         {/*<InfoTag iconId={iconId} title={title}/>*/}
