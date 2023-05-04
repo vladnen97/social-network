@@ -36,18 +36,21 @@ export type ProfilePageActionsType =
     | ReturnType<typeof ChangeNewPostText>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setIsFetching>
+    | ReturnType<typeof setStatus>
 
 enum ProfileActionTypes {
     ADD_POST = 'ADD-POST',
     UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT',
     SET_USER_PROFILE = 'SET-USER-PROFILE',
     SET_LOADING = 'SET-LOADING',
+    SET_STATUS = 'SET-STATUS'
 }
 
 
 const initialState = {
     isLoading: false,
     postTextValue: '',
+    status: '',
     header: null as ProfilePageHeaderType,
     posts: [
         {
@@ -116,6 +119,11 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
                 ...state,
                 isLoading: action.status
             }
+        case ProfileActionTypes.SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            }
         default:
             return state;
     }
@@ -124,12 +132,19 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
 
 //action-creators
 export const addPost = () => ({type: ProfileActionTypes.ADD_POST} as const);
-export const ChangeNewPostText = (newText: string) => ({type: ProfileActionTypes.UPDATE_NEW_POST_TEXT, newText: newText} as const);
-export const setUserProfile = (profile: ProfilePageHeaderType) => ({type: ProfileActionTypes.SET_USER_PROFILE, profile} as const)
+export const ChangeNewPostText = (newText: string) => ({
+    type: ProfileActionTypes.UPDATE_NEW_POST_TEXT,
+    newText: newText
+} as const);
+export const setUserProfile = (profile: ProfilePageHeaderType) => ({
+    type: ProfileActionTypes.SET_USER_PROFILE,
+    profile
+} as const)
 export const setIsFetching = (status: boolean) => ({type: ProfileActionTypes.SET_LOADING, status} as const)
+export const setStatus = (status: string) => ({type: ProfileActionTypes.SET_STATUS, status} as const)
 
 //thunk-creators
-export const getProfile = (userId: string | undefined): AppThunk => (dispatch) => {
+export const getProfile = (userId: string): AppThunk => (dispatch) => {
     dispatch(setIsFetching(true))
 
     profileAPI.getProfileData(userId).then(data => {
@@ -138,5 +153,19 @@ export const getProfile = (userId: string | undefined): AppThunk => (dispatch) =
 
     })
 }
+export const getStatus = (userId: string): AppThunk => (dispatch) => {
+    profileAPI.getProfileStatus(userId).then(status => {
+        dispatch(setStatus(status))
+    })
+}
+
+export const updateStatus = (status: string): AppThunk => (dispatch) => {
+    profileAPI.updateProfileStatus(status).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+    })
+}
+
 
 export default profileReducer;
