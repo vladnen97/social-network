@@ -1,11 +1,11 @@
 import React from 'react';
 import {Post} from '../Post/Post';
 import s from './Wall.module.css';
-import {SubmitPost} from '../SubmitPost/SubmitPost';
+import AddPostForm from '../SubmitPost/AddPostForm';
 import {WallPropsType} from './WallContainer';
 
 
-export function Wall({posts, addPost, ChangeNewPostText, postTextValue}: WallPropsType) {
+export function Wall({posts, addPost}: WallPropsType) {
 
     const mappedPosts = posts.map( (p) => {
         return (
@@ -13,13 +13,14 @@ export function Wall({posts, addPost, ChangeNewPostText, postTextValue}: WallPro
         )
     })
 
+    const onSubmit = (value: {postText: string}) => {
+        addPost(value.postText)
+    }
+
 
     return (
         <div className={s.wall}>
-            <SubmitPost postTextValue={postTextValue}
-                        updateNewPostText={ChangeNewPostText}
-                        addPost={addPost}
-            />
+            <AddPostForm onSubmit={onSubmit}/>
 
             { mappedPosts }
         </div>
