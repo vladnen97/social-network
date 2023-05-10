@@ -33,14 +33,12 @@ export type ProfilePageType = typeof initialState
 
 export type ProfilePageActionsType =
     ReturnType<typeof addPost>
-    | ReturnType<typeof ChangeNewPostText>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setIsFetching>
     | ReturnType<typeof setStatus>
 
 enum ProfileActionTypes {
     ADD_POST = 'ADD-POST',
-    UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT',
     SET_USER_PROFILE = 'SET-USER-PROFILE',
     SET_LOADING = 'SET-LOADING',
     SET_STATUS = 'SET-STATUS'
@@ -49,7 +47,6 @@ enum ProfileActionTypes {
 
 const initialState = {
     isLoading: false,
-    postTextValue: '',
     status: '',
     header: null as ProfilePageHeaderType,
     posts: [
@@ -100,19 +97,13 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
                 id: v1(),
                 name: 'Name Surname',
                 date: new Date().toLocaleString('ru-RU', {year: 'numeric', month: 'long', day: 'numeric'}).slice(0, 14),
-                postContent: state.postTextValue,
+                postContent: action.value,
                 likes: 0,
                 comments: 0
             }
             return {
                 ...state,
-                postTextValue: '',
                 posts: [newPost, ...state.posts]
-            }
-        case ProfileActionTypes.UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                postTextValue: action.newText
             }
         case ProfileActionTypes.SET_LOADING:
             return {
@@ -131,11 +122,7 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
 }
 
 //action-creators
-export const addPost = () => ({type: ProfileActionTypes.ADD_POST} as const);
-export const ChangeNewPostText = (newText: string) => ({
-    type: ProfileActionTypes.UPDATE_NEW_POST_TEXT,
-    newText: newText
-} as const);
+export const addPost = (value: string) => ({type: ProfileActionTypes.ADD_POST, value} as const);
 export const setUserProfile = (profile: ProfilePageHeaderType) => ({
     type: ProfileActionTypes.SET_USER_PROFILE,
     profile
