@@ -14,10 +14,9 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
                 <label htmlFor="password">Password: </label>
                 <Field name={'password'} component="input" placeholder={'enter your password'} required/>
             </div>
-            <div>
-                <Field component="input" type="checkbox" name={'rememberMe'}/>
-                <label htmlFor={'rememberMe'}> Remember me</label>
-            </div>
+            <label>
+                <Field component="input" type="checkbox" name={'rememberMe'}/> Remember me
+            </label>
             <button>login</button>
         </form>
     )
