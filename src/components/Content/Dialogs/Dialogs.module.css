@@ -40,6 +40,10 @@
     gap: 20px;
 }
 
+.sendMessage textarea {
+    border-radius: 20px;
+}
+
 
 /*dialogs bar*/
 .dialogs {
