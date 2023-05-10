@@ -1,18 +1,17 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css';
 import {Dialog} from './Dialog/Dialog';
 import {Message} from './Message/Message';
-import {Button, Divider, Input} from 'antd';
+import {Divider} from 'antd';
 import {DialogsPropsType} from './DialogsContainer';
-
-const {TextArea} = Input
-
-export function Dialogs({addMessage, changeNewMessageText, dialogsData}: DialogsPropsType) {
-
-    const addNewMessageHandler = () => addMessage()
-    const updateNewMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => changeNewMessageText(e.currentTarget.value)
+import AddMessageForm from './addMessageForm';
 
 
+export function Dialogs({addMessage, dialogsData}: DialogsPropsType) {
+
+    const submitMessage = (values: {text: string}) => {
+        addMessage(values.text)
+    }
 
     const mappedDialogs = dialogsData.dialogs.map(el => <Dialog key={el.id} name={el.name} url={el.url}
                                                                 status={el.status} path={el.path}/>);
@@ -27,16 +26,8 @@ export function Dialogs({addMessage, changeNewMessageText, dialogsData}: Dialogs
                 </div>
 
                 <Divider className={s.divider}/>
+                <AddMessageForm onSubmit={submitMessage}/>
 
-                <div className={s.sendMessage}>
-                    <TextArea size={'large'}
-                              style={{borderRadius: '20px'}}
-                              autoSize={{ minRows: 1, maxRows: 6 }}
-                              placeholder={'Write a message...'}
-                              value = {dialogsData.newMessageText}
-                              onChange = {updateNewMessageTextHandler}/>
-                    <Button onClick={addNewMessageHandler} shape={'round'} size={'large'} type={'primary'}> send </Button>
-                </div>
             </div>
 
             <div className={s.dialogs}>
