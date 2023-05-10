@@ -15,11 +15,10 @@ export type DialogType = {
     path: string
 }
 export type DialogsPageType = {
-    newMessageText: string
     messages: Array<MessageType>
     dialogs: Array<DialogType>
 }
-export type DialogsPageActionsType = ReturnType<typeof addMessage> | ReturnType<typeof changeNewMessageText>
+export type DialogsPageActionsType = ReturnType<typeof addMessage>
 
 enum DialogsActionTypes {
     ADD_MESSAGE = 'ADD-MESSAGE',
@@ -28,7 +27,6 @@ enum DialogsActionTypes {
 
 
 const initialState: DialogsPageType = {
-    newMessageText: '',
     messages: [
         {
             id: v1(),
@@ -100,29 +98,19 @@ function dialogsReducer(state: DialogsPageType = initialState, action: DialogsPa
         case DialogsActionTypes.ADD_MESSAGE:
             const newMessage: MessageType = {
                 id: v1(),
-                text: state.newMessageText,
+                text: action.message,
                 status: new Date().toTimeString().slice(0, 5),
                 url: 'https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg'
             }
             return {
                 ...state,
-                newMessageText: '',
                 messages: [...state.messages, newMessage]
-            }
-
-        case DialogsActionTypes.UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newText
             }
         default:
             return state;
     }
-
-
 }
 
-export const addMessage = () => ({type: DialogsActionTypes.ADD_MESSAGE} as const)
-export const changeNewMessageText = (newText: string) => ({type: DialogsActionTypes.UPDATE_NEW_MESSAGE_TEXT, newText: newText} as const);
+export const addMessage = (message: string) => ({type: DialogsActionTypes.ADD_MESSAGE, message} as const)
 
 export default dialogsReducer;
