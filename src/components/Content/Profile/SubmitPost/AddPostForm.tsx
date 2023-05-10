@@ -12,7 +12,6 @@ function AddPostForm(props: InjectedFormProps<{postText: string}>) {
 
     return (
         <form className={s.submitPost} onSubmit={props.handleSubmit}>
-
             <Field component={ATextarea} name={'postText'} placeholder={"What's new?"} size={'large'} autoSize={{ minRows: 2, maxRows: 8 }}/>
             <Button size={'large'} htmlType={'submit'} shape={'round'}> Post </Button>
         </form>
