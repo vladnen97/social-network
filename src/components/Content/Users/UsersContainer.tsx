@@ -3,7 +3,7 @@ import {RootStateType} from '../../../redux/redux-store';
 import {getUsers, setCurrentPage, setFollow, setUnFollow, UsersPageType, UserType} from '../../../redux/usersReducer';
 import React, {ComponentType} from 'react';
 import {Users} from './Users';
-import preloader from '../../../static/preloader.gif'
+import preloader from '../../../assets/preloader.gif'
 import {compose} from 'redux';
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect';
 

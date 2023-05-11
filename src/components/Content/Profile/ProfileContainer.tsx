@@ -4,7 +4,7 @@ import {getProfile, getStatus} from '../../../redux/profileReducer';
 import {connect} from 'react-redux';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {RootStateType} from '../../../redux/redux-store';
-import preloader from '../../../static/preloader.gif';
+import preloader from '../../../assets/preloader.gif';
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect';
 import {compose} from 'redux';
 
