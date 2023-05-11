@@ -2,16 +2,13 @@
     background-color: #fff;
     border-radius: 20px;
     padding: 16px;
-    position: relative;
 }
 
 .submitPost textarea {
     border-radius: 20px;
-    margin-bottom: 55px;
 }
 
 .submitPost button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    margin-top: 15px;
+    margin-left: 825px;
 }
