@@ -36,12 +36,13 @@
 .sendMessage {
     padding: 8px 24px 16px 24px;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 20px;
 }
 
 .sendMessage textarea {
     border-radius: 20px;
+    min-width: 465px;
 }
 
 
