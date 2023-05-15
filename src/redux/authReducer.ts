@@ -39,3 +39,19 @@ export const getAuthData = (): AppThunk => (dispatch) => {
         if (data.resultCode === 0) dispatch(setAuthUserData(data.data))
     })
 }
+
+export const login = (login: string, password: string, rememberMe?: boolean): AppThunk => (dispatch) => {
+    authAPI.login(login, password, rememberMe).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(getAuthData())
+        }
+    })
+}
+
+export const logout = (): AppThunk => (dispatch) => {
+    authAPI.logout().then(data => {
+        if (data.resultCode === 0) {
+
+        }
+    })
+}
