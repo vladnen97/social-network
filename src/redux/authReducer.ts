@@ -30,7 +30,10 @@ export const authReducer = (state: InitStateType = initState, action: AuthAction
     }
 }
 
-export const  setAuthUserData= (id: number | null = null, email: string | null = null, login: string | null = null, isAuth: boolean = false) => ({type: AuthActionTypes.SET_USER_DATA, payload: {id, email, login, isAuth}} as const)
+export const setAuthUserData = (id: number | null = null, email: string | null = null, login: string | null = null, isAuth: boolean = false) => ({
+    type: AuthActionTypes.SET_USER_DATA,
+    payload: {id, email, login, isAuth}
+} as const)
 
 //thunk-creators
 export const getAuthData = (): AppThunk => (dispatch) => {
@@ -39,8 +42,8 @@ export const getAuthData = (): AppThunk => (dispatch) => {
     })
 }
 
-export const login = (login: string, password: string, rememberMe?: boolean): AppThunk => (dispatch) => {
-    authAPI.login(login, password, rememberMe).then(data => {
+export const login = (email: string, password: string, rememberMe: boolean): AppThunk => (dispatch) => {
+    authAPI.login(email, password, rememberMe).then(data => {
         if (data.resultCode === 0) dispatch(getAuthData())
     })
 }
