@@ -2,6 +2,18 @@ import axios from 'axios';
 import {ProfilePageHeaderType} from '../redux/profileReducer';
 import {UserType} from '../redux/usersReducer';
 
+type ResponseType<D = {}> = {
+    resultCode: number
+    messages: string[]
+    data: D
+}
+type GetUsersType = {
+    items: Array<UserType>
+    error: string | null
+    totalCount: number
+}
+type GetProfileDataType = ProfilePageHeaderType
+
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -10,37 +22,16 @@ const instance = axios.create({
     }
 })
 
-type GetUsersType = {
-    items: Array<UserType>
-    error: string | null
-    totalCount: number
-}
-type SetFollowUnfollowType = {
-    resultCode: number
-    messages: Array<string>
-    data: {}
-}
-type GetProfileDataType = ProfilePageHeaderType
-type GetAuthDataType = {
-    data: { id: number, email: string, login: string }
-    messages: Array<string>
-    resultCode: number
-}
-type UpdateStatusType = {
-    data: {}
-    messages: Array<string>
-    resultCode: number
-}
 
 export const usersAPI = {
     getUsers(page: number) {
         return instance.get<GetUsersType>(`users?count=12&page=${page}`).then((res) => res.data)
     },
     setFollow(userId: number) {
-        return instance.post<SetFollowUnfollowType>(`follow/${userId}`, {}).then((res) => res.data)
+        return instance.post<ResponseType>(`follow/${userId}`, {}).then((res) => res.data)
     },
     setUnFollow(userId: number) {
-        return instance.delete<SetFollowUnfollowType>(`follow/${userId}`).then((res) => res.data)
+        return instance.delete<ResponseType>(`follow/${userId}`).then((res) => res.data)
     },
 }
 
@@ -52,12 +43,18 @@ export const profileAPI = {
         return instance.get<string>(`profile/status/${userId}`).then(res => res.data)
     },
     updateProfileStatus(status: string) {
-        return instance.put<UpdateStatusType>(`profile/status`, {status}).then(res => res.data)
+        return instance.put<ResponseType>(`profile/status`, {status}).then(res => res.data)
     }
 }
 
 export const authAPI = {
     getAuthData() {
-        return instance.get<GetAuthDataType>(`auth/me`).then((res) => res.data)
+        return instance.get<ResponseType<{ id: number, email: string, login: string }>>(`auth/me`).then((res) => res.data)
+    },
+    login(login: string, password: string, rememberMe: boolean = false) {
+        return instance.post<ResponseType<{userId: number}>>(`auth/login`, {login, password, rememberMe}).then(res => res.data)
+    },
+    logout() {
+        return instance.delete<ResponseType>(`auth/login`).then(res => res.data)
     }
 }
