@@ -23,20 +23,20 @@ const tailFormItemLayout = {
         }
     }
 }
-const maxLength12 = maxLength(12)
+const maxLength25 = maxLength(25)
 const minLength5 = minLength(5)
-const InpurReq = required(true)
+const InputReq = required(true)
 
 const LoginForm = (props: InjectedFormProps<FormDataType>) => {
     return (
         <form className={s.form} onSubmit={props.handleSubmit}>
 
 
-            <Field name={'email'}
+            <Field name={"email"}
                    label={'Email'}
                    component={AInput}
                    hasFeedback
-                   validate={[InpurReq]}
+                   validate={[InputReq]}
                    size={'large'}
                    type="email"
                    placeholder={'enter your email'}/>
@@ -47,7 +47,7 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
                    component={APassword}
                    size={'large'}
                    hasFeedback
-                   validate={[InpurReq, maxLength12, minLength5]}
+                   validate={[InputReq, maxLength25, minLength5]}
                    placeholder={'enter your password'}/>
 
 
