@@ -1,8 +1,9 @@
 import {authAPI} from '../api/api';
 import {AppThunk} from './redux-store';
+import {stopSubmit} from 'redux-form';
 
 export type InitStateType = typeof initState
-export type AuthActionsType = ReturnType<typeof setAuthUserData>
+export type AuthActionsType = ReturnType<typeof setAuthUserData> | ReturnType<typeof stopSubmit>
 
 enum AuthActionTypes {
     SET_USER_DATA = 'SET-USER-DATA',
@@ -45,6 +46,7 @@ export const getAuthData = (): AppThunk => (dispatch) => {
 export const login = (email: string, password: string, rememberMe: boolean): AppThunk => (dispatch) => {
     authAPI.login(email, password, rememberMe).then(data => {
         if (data.resultCode === 0) dispatch(getAuthData())
+        else dispatch(stopSubmit('login', {_error: data.messages[0]}))
     })
 }
 
