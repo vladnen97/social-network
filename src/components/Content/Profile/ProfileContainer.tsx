@@ -13,18 +13,19 @@ type PathParamsType = {
 }
 type MapStateToPropsType = {
     isLoading: boolean
+    authUserId: number | null
 }
 type ProfileInnerContainerPropsType = RouteComponentProps<PathParamsType> & MapStateToPropsType & {
-    getProfile: (userId: string) => void
-    getStatus: (userId: string) => void
+    getProfile: (userId: number) => void
+    getStatus: (userId: number) => void
 }
 
 class ProfileInnerContainer extends React.Component<ProfileInnerContainerPropsType, {}> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId
+        let userId = Number(this.props.match.params.userId)
         if (!userId) {
-            userId = '28429'
+            userId = 28429
         }
         this.props.getProfile(userId)
         this.props.getStatus(userId)
@@ -40,7 +41,8 @@ class ProfileInnerContainer extends React.Component<ProfileInnerContainerPropsTy
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
-        isLoading: state.profilePage.isLoading
+        isLoading: state.profilePage.isLoading,
+        authUserId: state.auth.id
     }
 }
 
