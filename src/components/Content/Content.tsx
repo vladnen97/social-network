@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import c from './Content.module.css';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch, useLocation} from 'react-router-dom';
 import DialogsContainer from './Dialogs/DialogsContainer';
 import UsersContainer from './Users/UsersContainer';
 import ProfileContainer from './Profile/ProfileContainer';
@@ -9,6 +9,12 @@ import {Empty} from 'antd';
 
 
 export function Content() {
+    const title = useLocation().pathname.slice(1)
+
+    useEffect(() => {
+        document.title = title
+    }, [title])
+
     return (
         <div className={c.content}>
             <Switch>
