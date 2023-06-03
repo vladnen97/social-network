@@ -36,9 +36,9 @@ export const setAuthUserData = (id: number | null = null, email: string | null =
     payload: {id, email, login, isAuth}
 } as const)
 
-//thunk-creators
-export const getAuthData = (): AppThunk => (dispatch) => {
-    authAPI.getAuthData().then((data) => {
+//thunks
+export const getAuthData = (): AppThunk<Promise<void>> => (dispatch) => {
+    return authAPI.getAuthData().then((data) => {
         if (data.resultCode === 0) dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login, true))
     })
 }

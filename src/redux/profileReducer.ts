@@ -131,7 +131,7 @@ export const setIsFetching = (status: boolean) => ({type: ProfileActionTypes.SET
 export const setStatus = (status: string) => ({type: ProfileActionTypes.SET_STATUS, status} as const)
 
 //thunk-creators
-export const getProfile = (userId: number | null): AppThunk => (dispatch) => {
+export const getProfile = (userId: number): AppThunk => (dispatch) => {
     dispatch(setIsFetching(true))
 
     profileAPI.getProfileData(userId).then(data => {
