@@ -3,9 +3,8 @@ import {RootStateType} from '../../../redux/redux-store';
 import {getUsers, setCurrentPage, setFollow, setUnFollow, UsersPageType, UserType} from '../../../redux/usersReducer';
 import React, {ComponentType} from 'react';
 import {Users} from './Users';
-import preloader from '../../../assets/preloader.gif'
 import {compose} from 'redux';
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect';
+import {PreLoader} from './PreLoader';
 
 
 type MapStateToPropsType = {
@@ -40,8 +39,7 @@ class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
         return (
             this.props.isFetching
                 ?
-                <div style={{width: '150px', margin: 'auto', marginTop: '300px'}}><img src={preloader} alt="fetching"/>
-                </div>
+                <PreLoader/>
                 : <Users users={this.props.users}
                          totalCount={this.props.totalCount}
                          currentPage={this.props.currentPage}
@@ -68,4 +66,4 @@ export default compose<ComponentType>(connect(mapStateToProps, {
     setUnFollow,
     setCurrentPage,
     getUsers
-}), withAuthRedirect)(UsersAPIComponent)
+}))(UsersAPIComponent)
