@@ -5,6 +5,12 @@ import React, {ComponentType} from 'react';
 import {Users} from './Users';
 import {compose} from 'redux';
 import {PreLoader} from './PreLoader';
+import {
+    getCurrentPageSelector, getFollowingProgressSelector,
+    getIsFetchingSelector,
+    getTotalUsersCountSelector,
+    getUsersSelector
+} from '../../../redux/users-selectors';
 
 
 type MapStateToPropsType = {
@@ -53,11 +59,11 @@ class UsersAPIComponent extends React.Component<UsersPropsType, UsersPageType> {
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
-        users: state.usersPage.users,
-        isFetching: state.usersPage.isFetching,
-        totalCount: state.usersPage.totalCount,
-        currentPage: state.usersPage.currentPage,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsersSelector(state),
+        isFetching: getIsFetchingSelector(state),
+        totalCount: getTotalUsersCountSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        followingInProgress: getFollowingProgressSelector(state),
     }
 }
 
