@@ -5,25 +5,29 @@ import AddPostForm from '../SubmitPost/AddPostForm';
 import {WallPropsType} from './WallContainer';
 
 
-export function Wall({posts, addPost}: WallPropsType) {
+export class Wall extends React.PureComponent<WallPropsType> {
+    render() {
+        let {posts, addPost} = this.props;
 
-    const mappedPosts = posts.map( (p) => {
+        const mappedPosts = posts.map((p) => {
+            return (
+                <Post key={p.id} name={p.name} date={p.date} postContent={p.postContent} likes={p.likes}
+                      comments={p.comments}/>
+            )
+        })
+
+        const onSubmit = (value: { postText: string }) => {
+            addPost(value.postText)
+        }
+
+
         return (
-            <Post key={p.id} name={p.name} date={p.date} postContent={p.postContent} likes={p.likes} comments={p.comments}/>
-        )
-    })
+            <div className={s.wall}>
+                <AddPostForm onSubmit={onSubmit}/>
 
-    const onSubmit = (value: {postText: string}) => {
-        addPost(value.postText)
+                {mappedPosts}
+            </div>
+        );
     }
-
-
-    return (
-        <div className={s.wall}>
-            <AddPostForm onSubmit={onSubmit}/>
-
-            { mappedPosts }
-        </div>
-    );
 }
 
