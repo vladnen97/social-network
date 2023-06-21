@@ -131,27 +131,23 @@ export const setIsFetching = (status: boolean) => ({type: ProfileActionTypes.SET
 export const setStatus = (status: string) => ({type: ProfileActionTypes.SET_STATUS, status} as const)
 
 //thunk-creators
-export const getProfile = (userId: number): AppThunk => (dispatch) => {
+export const getProfile = (userId: number): AppThunk => async (dispatch) => {
     dispatch(setIsFetching(true))
 
-    profileAPI.getProfileData(userId).then(data => {
-        dispatch(setUserProfile(data))
-        dispatch(setIsFetching(false))
+    const data = await profileAPI.getProfileData(userId)
+    dispatch(setUserProfile(data))
+    dispatch(setIsFetching(false))
 
-    })
 }
-export const getStatus = (userId: number): AppThunk => (dispatch) => {
-    profileAPI.getProfileStatus(userId).then(status => {
+export const getStatus = (userId: number): AppThunk => async (dispatch) => {
+    const data = await profileAPI.getProfileStatus(userId)
+    dispatch(setStatus(data))
+}
+export const updateStatus = (status: string): AppThunk => async (dispatch) => {
+    const data = await profileAPI.updateProfileStatus(status)
+    if (data.resultCode === 0) {
         dispatch(setStatus(status))
-    })
-}
-
-export const updateStatus = (status: string): AppThunk => (dispatch) => {
-    profileAPI.updateProfileStatus(status).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setStatus(status))
-        }
-    })
+    }
 }
 
 

@@ -98,35 +98,29 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
 } as const)
 
 //thunk-creators
-export const getUsers = (currentPage: number): AppThunk => (dispatch) => {
+export const getUsers = (currentPage: number): AppThunk => async (dispatch) => {
 
     dispatch(setIsFetching(true))
     dispatch(setCurrentPage(currentPage))
 
-    usersAPI.getUsers(currentPage).then(data => {
-        dispatch(setUsers(data.items))
-        dispatch(setTotalUsersCount(data.totalCount))
-        dispatch(setIsFetching(false))
-    })
-
+    const data = await usersAPI.getUsers(currentPage)
+    dispatch(setUsers(data.items))
+    dispatch(setTotalUsersCount(data.totalCount))
+    dispatch(setIsFetching(false))
 }
-
-export const setFollow = (userId: number): AppThunk => (dispatch) => {
+export const setFollow = (userId: number): AppThunk => async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId))
 
-    usersAPI.setFollow(userId).then((data) => {
-        dispatch(toggleFollowingProgress(false, userId))
-        if (data.resultCode === 0) dispatch(follow(userId))
-    })
+    const data = await usersAPI.setFollow(userId)
+    dispatch(toggleFollowingProgress(false, userId))
+    if (data.resultCode === 0) dispatch(follow(userId))
 }
-
-export const setUnFollow = (userId: number): AppThunk => (dispatch) => {
+export const setUnFollow = (userId: number): AppThunk => async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId))
 
-    usersAPI.setUnFollow(userId).then((data) => {
-        dispatch(toggleFollowingProgress(false, userId))
-        if (data.resultCode === 0) dispatch(unfollow(userId))
-    })
+    const data = await usersAPI.setUnFollow(userId)
+    dispatch(toggleFollowingProgress(false, userId))
+    if (data.resultCode === 0) dispatch(unfollow(userId))
 }
 
 export default usersReducer;

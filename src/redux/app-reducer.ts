@@ -29,6 +29,7 @@ export const initializedSuccess = () => {
 }
 
 //thunks
-export const  initializeApp = (): AppThunk => dispatch => {
-    dispatch(getAuthData()).then(() => dispatch(initializedSuccess()))
+export const  initializeApp = (): AppThunk => async dispatch => {
+    const data = await dispatch(getAuthData())
+    dispatch(initializedSuccess())
 }
