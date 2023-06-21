@@ -1,5 +1,6 @@
 import {usersAPI} from '../api/api';
 import {AppThunk} from './redux-store';
+import {followUnfollowFlow} from '../utils/follow-unfollow-flow';
 
 export type UserType = {
     id: number
@@ -109,18 +110,14 @@ export const getUsers = (currentPage: number): AppThunk => async (dispatch) => {
     dispatch(setIsFetching(false))
 }
 export const setFollow = (userId: number): AppThunk => async (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId))
+    const apiMethod = usersAPI.setFollow.bind(usersAPI)
 
-    const data = await usersAPI.setFollow(userId)
-    dispatch(toggleFollowingProgress(false, userId))
-    if (data.resultCode === 0) dispatch(follow(userId))
+    followUnfollowFlow(apiMethod, follow, dispatch, userId)
 }
 export const setUnFollow = (userId: number): AppThunk => async (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId))
+    const apiMethod = usersAPI.setUnFollow.bind(usersAPI)
 
-    const data = await usersAPI.setUnFollow(userId)
-    dispatch(toggleFollowingProgress(false, userId))
-    if (data.resultCode === 0) dispatch(unfollow(userId))
+    followUnfollowFlow(apiMethod, unfollow, dispatch, userId)
 }
 
 export default usersReducer;
