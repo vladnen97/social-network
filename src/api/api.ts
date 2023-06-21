@@ -2,7 +2,7 @@ import axios from 'axios';
 import {ProfilePageHeaderType} from '../redux/profileReducer';
 import {UserType} from '../redux/usersReducer';
 
-type ResponseType<D = {}> = {
+export type ResponseType<D = {}> = {
     resultCode: number
     messages: string[]
     data: D

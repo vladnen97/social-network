@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
 })
 
 export type RootStateType = ReturnType<typeof rootReducer>
-type AppActionTypes =
+export type AppActionTypes =
     UsersPageActionType
     | ProfilePageActionsType
     | DialogsPageActionsType
