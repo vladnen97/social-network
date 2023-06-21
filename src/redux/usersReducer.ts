@@ -20,13 +20,13 @@ export type UsersPageActionType =
     | ReturnType<typeof toggleFollowingProgress>
 
 enum UsersActionTypes {
-    FOLLOW = 'FOLLOW',
-    UNFOLLOW = 'UNFOLLOW',
-    SET_USERS = 'SET-USERS',
-    SET_CURRENT_PAGE = 'SET-CURRENT-PAGE',
-    SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT',
-    SET_FETCHING = 'SET-FETCHING',
-    SET_FOLLOWING_PROGRESS = 'SET-FOLLOWING-PROGRESS',
+    FOLLOW = 'users/FOLLOW',
+    UNFOLLOW = 'users/UNFOLLOW',
+    SET_USERS = 'users/SET-USERS',
+    SET_CURRENT_PAGE = 'users/SET-CURRENT-PAGE',
+    SET_TOTAL_USERS_COUNT = 'users/SET-TOTAL-USERS-COUNT',
+    SET_FETCHING = 'users/SET-FETCHING',
+    SET_FOLLOWING_PROGRESS = 'users/SET-FOLLOWING-PROGRESS',
 }
 
 

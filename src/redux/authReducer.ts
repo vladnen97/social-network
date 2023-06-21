@@ -6,7 +6,7 @@ export type InitStateType = typeof initState
 export type AuthActionsType = ReturnType<typeof setAuthUserData> | ReturnType<typeof stopSubmit>
 
 enum AuthActionTypes {
-    SET_USER_DATA = 'SET-USER-DATA',
+    SET_USER_DATA = 'auth/SET-USER-DATA',
 
 }
 

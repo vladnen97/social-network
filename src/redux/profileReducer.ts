@@ -38,10 +38,10 @@ export type ProfilePageActionsType =
     | ReturnType<typeof setStatus>
 
 enum ProfileActionTypes {
-    ADD_POST = 'ADD-POST',
-    SET_USER_PROFILE = 'SET-USER-PROFILE',
-    SET_LOADING = 'SET-LOADING',
-    SET_STATUS = 'SET-STATUS'
+    ADD_POST = 'profile/ADD-POST',
+    SET_USER_PROFILE = 'profile/SET-USER-PROFILE',
+    SET_LOADING = 'profile/SET-LOADING',
+    SET_STATUS = 'profile/SET-STATUS'
 }
 
 

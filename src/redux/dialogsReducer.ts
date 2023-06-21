@@ -21,8 +21,8 @@ export type DialogsPageType = {
 export type DialogsPageActionsType = ReturnType<typeof addMessage>
 
 enum DialogsActionTypes {
-    ADD_MESSAGE = 'ADD-MESSAGE',
-    UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT',
+    ADD_MESSAGE = 'dialogs/ADD-MESSAGE',
+    UPDATE_NEW_MESSAGE_TEXT = 'dialogs/UPDATE-NEW-MESSAGE-TEXT',
 }
 
 
