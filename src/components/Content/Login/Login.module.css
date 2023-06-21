@@ -1,5 +1,14 @@
-.form {
-    max-width: 800px;
+.login {
+    max-width: 600px;
     padding-right: 20px;
-    margin-top: 20px;
+    margin: 40px auto;
+}
+
+.desc {
+    font-size: 21px;
+    text-align: center;
+}
+
+.form {
+    padding-top: 40px;
 }

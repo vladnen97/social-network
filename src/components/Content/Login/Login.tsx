@@ -15,7 +15,7 @@ type MapStateToPropsType = {
     isAuth: boolean
 }
 
-type LoginPropsType =MapStateToPropsType & {
+type LoginPropsType = MapStateToPropsType & {
     login: (email: string, password: string, rememberMe: boolean) => void
 }
 
@@ -28,7 +28,16 @@ const Login = (props: LoginPropsType) => {
     if (props.isAuth) return <Redirect to={'/profile'}/>
     return (
         <div className={s.login}>
-            <h1>Login</h1>
+            <div className={s.desc}>
+                <p>To log in get registered
+                    <a href={'https://social-network.samuraijs.com/'}
+                       target={'_blank'}> here
+                    </a>
+                </p>
+                <p>or use common test account credentials:</p>
+                <p>Email: free@samuraijs.com</p>
+                <p>Password: free</p>
+            </div>
             <LoginForm onSubmit={onSubmit}/>
         </div>
     )
