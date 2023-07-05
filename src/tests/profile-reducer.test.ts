@@ -20,7 +20,7 @@ beforeEach(() => {
     startState = {
         isLoading: false,
         status: '',
-        header: null as ProfilePageHeaderType,
+        header: {} as ProfilePageHeaderType,
         posts: [{
             id: '1',
             name: 'Name Surname',
