@@ -28,7 +28,7 @@ export type ProfilePageHeaderType = {
     lookingForAJobDescription: string
     photos: { small: string | null, large: string | null }
     userId: number
-} | null
+}
 export type ProfilePageType = typeof initialState
 
 export type ProfilePageActionsType =
@@ -36,19 +36,21 @@ export type ProfilePageActionsType =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setIsFetching>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof setPhoto>
 
 enum ProfileActionTypes {
     ADD_POST = 'profile/ADD-POST',
     SET_USER_PROFILE = 'profile/SET-USER-PROFILE',
     SET_LOADING = 'profile/SET-LOADING',
-    SET_STATUS = 'profile/SET-STATUS'
+    SET_STATUS = 'profile/SET-STATUS',
+    SET_PHOTO = 'profile/SET-PHOTO',
 }
 
 
 const initialState = {
     isLoading: false,
     status: '',
-    header: null as ProfilePageHeaderType,
+    header: {} as ProfilePageHeaderType,
     posts: [
         {
             id: v1(),
@@ -115,6 +117,14 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
                 ...state,
                 status: action.status
             }
+        case ProfileActionTypes.SET_PHOTO:
+            return {
+                ...state,
+                header: {
+                    ...state.header,
+                    photos: action.photos
+                }
+            }
         default:
             return state;
     }
@@ -129,6 +139,7 @@ export const setUserProfile = (profile: ProfilePageHeaderType) => ({
 } as const)
 export const setIsFetching = (status: boolean) => ({type: ProfileActionTypes.SET_LOADING, status} as const)
 export const setStatus = (status: string) => ({type: ProfileActionTypes.SET_STATUS, status} as const)
+export const setPhoto = (photos: { small: string, large: string }) => ({type: ProfileActionTypes.SET_PHOTO, photos} as const)
 
 //thunk-creators
 export const getProfile = (userId: number): AppThunk => async (dispatch) => {
@@ -147,6 +158,12 @@ export const updateStatus = (status: string): AppThunk => async (dispatch) => {
     const data = await profileAPI.updateProfileStatus(status)
     if (data.resultCode === 0) {
         dispatch(setStatus(status))
+    }
+}
+export const uploadPhoto = (file: any): AppThunk => async (dispatch) => {
+    const data = await profileAPI.uploadPhoto(file)
+    if (data.resultCode === 0) {
+        dispatch(setPhoto(data.data.photos))
     }
 }
 
