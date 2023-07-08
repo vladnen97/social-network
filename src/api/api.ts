@@ -13,6 +13,24 @@ type GetUsersType = {
     totalCount: number
 }
 type GetProfileDataType = ProfilePageHeaderType
+export type UpdateProfileData = {
+    userId: number
+    fullName: string
+    aboutMe: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    contacts: {
+        github: string
+        vk: string
+        facebook: string
+        instagram: string
+        twitter: string
+        website: string
+        youtube: string
+        mainLink: string
+    }
+
+}
 
 const instance = axios.create({
     withCredentials: true,
@@ -55,6 +73,9 @@ export const profileAPI = {
         }).then(res => {
             return res.data
         })
+    },
+    updateProfileData(model: UpdateProfileData) {
+        return instance.put<ResponseType>('/profile', model).then(res => res.data)
     }
 }
 
