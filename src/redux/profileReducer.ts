@@ -1,6 +1,7 @@
 import {v1} from 'uuid';
-import {profileAPI} from '../api/api';
+import {profileAPI, UpdateProfileData} from '../api/api';
 import {AppThunk} from './redux-store';
+import {stopSubmit} from 'redux-form';
 
 
 export type PostType = {
@@ -37,6 +38,7 @@ export type ProfilePageActionsType =
     | ReturnType<typeof setIsFetching>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof setPhoto>
+    | ReturnType<typeof setProfileData>
 
 enum ProfileActionTypes {
     ADD_POST = 'profile/ADD-POST',
@@ -44,6 +46,7 @@ enum ProfileActionTypes {
     SET_LOADING = 'profile/SET-LOADING',
     SET_STATUS = 'profile/SET-STATUS',
     SET_PHOTO = 'profile/SET-PHOTO',
+    SET_PROFILE_DATA = 'profile/SET-PROFILE-DATA',
 }
 
 
@@ -125,6 +128,15 @@ function profileReducer(state: ProfilePageType = initialState, action: ProfilePa
                     photos: action.photos
                 }
             }
+        case ProfileActionTypes.SET_PROFILE_DATA:
+            return {
+                ...state,
+                header: {
+                    ...state.header,
+                    ...action.model
+                }
+            }
+
         default:
             return state;
     }
@@ -140,6 +152,7 @@ export const setUserProfile = (profile: ProfilePageHeaderType) => ({
 export const setIsFetching = (status: boolean) => ({type: ProfileActionTypes.SET_LOADING, status} as const)
 export const setStatus = (status: string) => ({type: ProfileActionTypes.SET_STATUS, status} as const)
 export const setPhoto = (photos: { small: string, large: string }) => ({type: ProfileActionTypes.SET_PHOTO, photos} as const)
+export const setProfileData = (model: UpdateProfileData) => ({type: ProfileActionTypes.SET_PROFILE_DATA, model} as const)
 
 //thunk-creators
 export const getProfile = (userId: number): AppThunk => async (dispatch) => {
@@ -164,6 +177,15 @@ export const uploadPhoto = (file: any): AppThunk => async (dispatch) => {
     const data = await profileAPI.uploadPhoto(file)
     if (data.resultCode === 0) {
         dispatch(setPhoto(data.data.photos))
+    }
+}
+
+export const updateProfileData = (model: UpdateProfileData): AppThunk => async (dispatch) => {
+    const res = await profileAPI.updateProfileData(model)
+    if(res.resultCode === 0) {
+        dispatch(setProfileData(model))
+    } else {
+        dispatch(stopSubmit('edit-profile', {_error: res.messages[0]}))
     }
 }
 
