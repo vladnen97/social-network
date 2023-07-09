@@ -10,19 +10,22 @@ export type FormDataType = {
     email: string,
     password: string,
     rememberMe: boolean
+    captcha?: string
 }
+
 type MapStateToPropsType = {
+    captchaUrl: string | null
     isAuth: boolean
 }
 
 type LoginPropsType = MapStateToPropsType & {
-    login: (email: string, password: string, rememberMe: boolean) => void
+    login: (email: string, password: string, rememberMe: boolean, captcha?: string) => void
 }
 
 const Login = (props: LoginPropsType) => {
 
     const onSubmit = (formData: FormDataType) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
     if (props.isAuth) return <Redirect to={'/profile'}/>
@@ -38,13 +41,14 @@ const Login = (props: LoginPropsType) => {
                 <p>Email: free@samuraijs.com</p>
                 <p>Password: free</p>
             </div>
-            <LoginForm onSubmit={onSubmit}/>
+            <LoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     )
 }
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
+        captchaUrl: state.auth.captchaUrl,
         isAuth: state.auth.isAuth
     }
 }
