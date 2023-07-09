@@ -6,6 +6,7 @@ type StartStateType = {
     login: string | null,
     email: string | null,
     isAuth: boolean
+    captchaUrl: string | null
 }
 let startState: StartStateType
 
@@ -14,7 +15,8 @@ beforeEach(() => {
         id: null,
         login: null,
         email: null,
-        isAuth: false
+        isAuth: false,
+        captchaUrl: null
     }
 })
 
