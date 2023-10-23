@@ -12,7 +12,7 @@ const APassword = makeField(Password)
 const ACheckbox = makeField(Checkbox)
 
 const maxLength25 = maxLength(25)
-const minLength5 = minLength(5)
+const minLength3 = minLength(3)
 const InputReq = required(true)
 
 type CustomPropsType = {
@@ -44,7 +44,7 @@ const LoginForm = (props: InjectedFormProps<FormDataType, CustomPropsType> & Cus
                        component={APassword}
                        size={'large'}
                        hasFeedback
-                       validate={[InputReq, maxLength25, minLength5]}
+                       validate={[InputReq, maxLength25, minLength3]}
                        placeholder={'enter your password'}/>
 
                 <Field component={ACheckbox}
